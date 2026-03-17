@@ -1,0 +1,105 @@
+# LANGUAGE translation for 3d-action-platformer-template for the following files:
+# res://localization/localization_keys/settings_tr_keys.gd
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 3d-action-platformer-template\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: localization/localization_keys/settings_tr_keys.gd:36
+msgid "UI.SETTINGS.TITLE"
+msgstr "Settings"
+
+#: localization/localization_keys/settings_tr_keys.gd:38
+msgid "UI.SETTINGS.VOLUME.MASTER"
+msgstr "Master Volume"
+
+#: localization/localization_keys/settings_tr_keys.gd:39
+msgid "UI.SETTINGS.VOLUME.MUSIC"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:40
+msgid "UI.SETTINGS.VOLUME.SFX"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:42
+msgid "UI.SETTINGS.CAMERA.MOUSE.SENSITIVITY"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:43
+msgid "UI.SETTINGS.CAMERA.SENSITIVITY"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:45
+msgid "UI.SETTINGS.SCREEN.RESOLUTION"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:46
+msgid "UI.SETTINGS.WINDOW.MODE"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:47
+msgid "UI.SETTINGS.WINDOW.MODE.WINDOWED"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:48
+msgid "UI.SETTINGS.WINDOW.MODE.FULLSCREEN"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:49
+msgid "UI.SETTINGS.WINDOW.MODE.BORDERLESS"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:50
+msgid "UI.SETTINGS.GRAPHIC.QUALITY"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:52
+msgid "UI.SETTINGS.LANGUAGE"
+msgstr "Laguage"
+
+#: localization/localization_keys/settings_tr_keys.gd:53
+msgid "UI.SETTINGS.LANGUAGE.PORTUGUESE_BRAZIL"
+msgstr "Portuguese Brazil"
+
+#: localization/localization_keys/settings_tr_keys.gd:54
+msgid "UI.SETTINGS.LANGUAGE.JAPANESE"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:55
+msgid "UI.SETTINGS.LANGUAGE.SPANISH_LATIN_AMERICA"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:56
+msgid "UI.SETTINGS.LANGUAGE.ENGLISH_US"
+msgstr "English United States"
+
+#: localization/localization_keys/settings_tr_keys.gd:58
+msgid "UI.SETTINGS.CUSTOMIZE.CONTROLS"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:59
+msgid "UI.SETTINGS.BUTTON.CUSTOMIZE"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:61
+msgid "ERROR.SAVE.CONFIG"
+msgstr ""
+
+#: localization/localization_keys/settings_tr_keys.gd:62
+msgid "ERROR.LOAD.CONFIG"
+msgstr ""
+
+msgid "3d-action-platformer-template"
+msgstr ""

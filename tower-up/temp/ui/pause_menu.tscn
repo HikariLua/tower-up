@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b7myhk4mh5sf3"]
+
+[ext_resource type="Script" uid="uid://c20v4af3b2mo8" path="res://temp/ui/pause_menu.gd" id="1_78vm3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xy4vn"]
+font_size = 93
+
+[node name="PauseMenu" type="Control" unique_id=90742648 node_paths=PackedStringArray("focus_on_ready", "button_2")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78vm3")
+focus_on_ready = NodePath("Button")
+button_2 = NodePath("Button2")
+
+[node name="Label" type="Label" parent="." unique_id=1211680291]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_xy4vn")
+
+[node name="Button" type="Button" parent="." unique_id=631026993]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.52502
+offset_top = 119.0
+offset_right = 133.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../Button2")
+text = "01"
+
+[node name="Button2" type="Button" parent="." unique_id=1900833369]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.52502
+offset_top = 191.0
+offset_right = 136.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Button")
+text = "02"

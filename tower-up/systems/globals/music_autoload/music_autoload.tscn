@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bucnsn21aau4b"]
+
+[ext_resource type="Script" uid="uid://gvp2letv100s" path="res://systems/globals/music_autoload/music_autoload.gd" id="1_yowse"]
+
+[node name="MusicAutoload" type="Node" unique_id=2018332518]
+script = ExtResource("1_yowse")

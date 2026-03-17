@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://brc2gbu0l4tg3"]
+
+[ext_resource type="Script" uid="uid://dxhy52n1e04ro" path="res://temp/debug_stage.gd" id="1_pmxsu"]
+[ext_resource type="PackedScene" uid="uid://c6osf3bq18xy" path="res://entities/player/player.tscn" id="2_x347r"]
+[ext_resource type="PackedScene" uid="uid://ufip2b15ymeo" path="res://temp/free_camera_3d_controller.tscn" id="3_5n7jr"]
+[ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_181qj"]
+[ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_12ncl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dm68w"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm68w"]
+albedo_color = Color(0.30240002, 0.63, 0.31332, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
+
+[sub_resource type="Sky" id="Sky_x347r"]
+sky_material = SubResource("ProceduralSkyMaterial_pmxsu")
+
+[sub_resource type="Environment" id="Environment_5n7jr"]
+background_mode = 2
+sky = SubResource("Sky_x347r")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+tonemap_mode = 2
+
+[sub_resource type="Animation" id="Animation_5vjsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c3px5"]
+resource_name = "fixed_rotation"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqplk"]
+_data = {
+&"RESET": SubResource("Animation_5vjsy"),
+&"fixed_rotation": SubResource("Animation_c3px5")
+}
+
+[node name="DebugStage" type="Node3D" unique_id=1152093587]
+script = ExtResource("1_pmxsu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1961792096]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1852853505]
+shape = SubResource("BoxShape3D_dm68w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1387308986]
+material_override = SubResource("StandardMaterial3D_dm68w")
+mesh = SubResource("BoxMesh_pmxsu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650236770]
+environment = SubResource("Environment_5n7jr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=223826005]
+transform = Transform3D(0.72092617, -0.49909043, 0.48080578, 0, 0.69379157, 0.72017586, -0.6930119, -0.51919365, 0.5001725, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=866541521 instance=ExtResource("2_x347r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8779716, 0)
+
+[node name="Run" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="1" unique_id=1563185756 node_paths=PackedStringArray("camera_manager")]
+camera_manager = NodePath("../../../Camera3DController")
+can_be_transitioned_to = true
+
+[node name="Camera3DController" parent="." unique_id=985451762 node_paths=PackedStringArray("state_machine", "free_camera", "fixed_camera") instance=ExtResource("3_5n7jr")]
+script = ExtResource("4_181qj")
+state_machine = NodePath("StateMachine")
+free_camera = NodePath("StateMachine/FreeRotationCameraState")
+fixed_camera = NodePath("StateMachine/FixedYRotationCameraState")
+
+[node name="StateMachine" parent="Camera3DController" index="1" unique_id=131885147 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("FixedYRotationCameraState")
+
+[node name="FixedYRotationCameraState" type="Node" parent="Camera3DController/StateMachine" index="1" unique_id=1789118211 node_paths=PackedStringArray("camera_controller", "animation_player")]
+script = ExtResource("5_12ncl")
+rotation_degrees_step = 45.0
+camera_controller = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://dfoxxrbfyfg28"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3DController" unique_id=45855957]
+libraries/ = SubResource("AnimationLibrary_tqplk")
+
+[editable path="Player"]
+[editable path="Camera3DController"]

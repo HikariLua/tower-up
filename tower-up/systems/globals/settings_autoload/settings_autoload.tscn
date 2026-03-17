@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://62qfa64qragd"]
+
+[ext_resource type="Script" uid="uid://c6eaut3v4ur" path="res://systems/globals/settings_autoload/settings_autoload.gd" id="1_kty70"]
+
+[node name="SettingsAutoload" type="Node" unique_id=1998925270]
+script = ExtResource("1_kty70")

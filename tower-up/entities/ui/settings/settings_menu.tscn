@@ -1,0 +1,397 @@
+[gd_scene format=3 uid="uid://cadtlgefbxw8c"]
+
+[ext_resource type="Script" uid="uid://0qtwcvfx5ve" path="res://entities/ui/settings/settings_menu.gd" id="1_xo33x"]
+[ext_resource type="Script" uid="uid://brqmebwbtmegl" path="res://entities/ui/settings/h_slider_container.gd" id="2_dold6"]
+[ext_resource type="Script" uid="uid://dq7rbwessrx15" path="res://entities/ui/settings/customize_controls_button.gd" id="2_kfd87"]
+[ext_resource type="Script" uid="uid://ci0ks3kmc1aoo" path="res://entities/ui/settings/resolution_option_button.gd" id="3_4gp6r"]
+[ext_resource type="Script" uid="uid://bbi0dbm76dyu6" path="res://entities/ui/settings/master_volume_slider.gd" id="3_ulrnh"]
+[ext_resource type="Script" uid="uid://b4chgtd820fvg" path="res://entities/ui/settings/music_volume_slider.gd" id="4_a0fli"]
+[ext_resource type="Script" uid="uid://iknnhaofay2n" path="res://entities/ui/settings/sfx_volume_slider.gd" id="5_k14pj"]
+[ext_resource type="Script" uid="uid://b6mnaybsb1pwa" path="res://entities/ui/settings/mouse_sensitivity_slider.gd" id="6_a0fli"]
+[ext_resource type="Script" uid="uid://m472t4xf80nm" path="res://entities/ui/settings/camera_sensitivity_slider.gd" id="7_k14pj"]
+[ext_resource type="Script" uid="uid://c0tbaoiaa3xee" path="res://entities/ui/settings/window_mode_option_button.gd" id="9_cu0f5"]
+[ext_resource type="Script" uid="uid://ccb7w8p2bh85o" path="res://entities/ui/settings/language_option_button.gd" id="10_77fv4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfml5"]
+font_size = 54
+
+[sub_resource type="LabelSettings" id="LabelSettings_rso6a"]
+font_size = 26
+
+[node name="SettingsMenu" type="Control" unique_id=836134712 node_paths=PackedStringArray("focus_on_ready")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xo33x")
+focus_on_ready = NodePath("ScrollContainer/Options/MasterVolume/HMasterContainer/MasterVolumeSlider")
+
+[node name="Label" type="Label" parent="." unique_id=1123861975]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 127.0
+grow_horizontal = 2
+text = "UI.SETTINGS.TITLE"
+label_settings = SubResource("LabelSettings_tfml5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=810828999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 252.0
+offset_top = 170.0
+offset_right = -252.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="ScrollContainer" unique_id=2034073042]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MasterVolume" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1242816538]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/MasterVolume" unique_id=1293275871]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.VOLUME.MASTER"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/MasterVolume" unique_id=1862459924]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HMasterContainer" type="HBoxContainer" parent="ScrollContainer/Options/MasterVolume" unique_id=1653677698 node_paths=PackedStringArray("label", "slider")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 2
+script = ExtResource("2_dold6")
+label = NodePath("MasterLabel")
+slider = NodePath("MasterVolumeSlider")
+
+[node name="MasterLabel" type="Label" parent="ScrollContainer/Options/MasterVolume/HMasterContainer" unique_id=683263248]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "100"
+label_settings = SubResource("LabelSettings_rso6a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="ScrollContainer/Options/MasterVolume/HMasterContainer" unique_id=1263570282]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../CustomizeControls/ControlsButton")
+focus_neighbor_bottom = NodePath("../../../MusicVolume/HMusicContainer/MusicVolumeSlider")
+script = ExtResource("3_ulrnh")
+
+[node name="MusicVolume" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=118207958]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/MusicVolume" unique_id=355203961]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.VOLUME.MUSIC"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/MusicVolume" unique_id=1020975901]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HMusicContainer" type="HBoxContainer" parent="ScrollContainer/Options/MusicVolume" unique_id=109950743 node_paths=PackedStringArray("label", "slider")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 2
+script = ExtResource("2_dold6")
+label = NodePath("MusicLabel")
+slider = NodePath("MusicVolumeSlider")
+
+[node name="MusicLabel" type="Label" parent="ScrollContainer/Options/MusicVolume/HMusicContainer" unique_id=1867926317]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "100"
+label_settings = SubResource("LabelSettings_rso6a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="ScrollContainer/Options/MusicVolume/HMusicContainer" unique_id=1697729444]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../MasterVolume/HMasterContainer/MasterVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../SFXVolume/HSFXContainer/SFXVolumeSlider")
+script = ExtResource("4_a0fli")
+
+[node name="SFXVolume" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1739153296]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/SFXVolume" unique_id=1417358979]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.VOLUME.SFX"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/SFXVolume" unique_id=743360850]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSFXContainer" type="HBoxContainer" parent="ScrollContainer/Options/SFXVolume" unique_id=1350039386 node_paths=PackedStringArray("label", "slider")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 2
+script = ExtResource("2_dold6")
+label = NodePath("SFXLabel")
+slider = NodePath("SFXVolumeSlider")
+
+[node name="SFXLabel" type="Label" parent="ScrollContainer/Options/SFXVolume/HSFXContainer" unique_id=1818260012]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "100"
+label_settings = SubResource("LabelSettings_rso6a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="ScrollContainer/Options/SFXVolume/HSFXContainer" unique_id=203323921]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../MusicVolume/HMusicContainer/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../MouseSensitivity/HMouseSensitivityContainer/MouseSensitivitySlider")
+script = ExtResource("5_k14pj")
+
+[node name="MouseSensitivity" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=2082496107]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/MouseSensitivity" unique_id=1535319494]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.CAMERA.MOUSE.SENSITIVITY"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/MouseSensitivity" unique_id=1322023782]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HMouseSensitivityContainer" type="HBoxContainer" parent="ScrollContainer/Options/MouseSensitivity" unique_id=2086932343 node_paths=PackedStringArray("label", "slider")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 2
+script = ExtResource("2_dold6")
+label = NodePath("MouseSensitivityLabel")
+slider = NodePath("MouseSensitivitySlider")
+
+[node name="MouseSensitivityLabel" type="Label" parent="ScrollContainer/Options/MouseSensitivity/HMouseSensitivityContainer" unique_id=402967665]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "100"
+label_settings = SubResource("LabelSettings_rso6a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="ScrollContainer/Options/MouseSensitivity/HMouseSensitivityContainer" unique_id=1586030136]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../SFXVolume/HSFXContainer/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../CameraSensitivity/HCameraSensitivityContainer/CameraSensitivitySlider")
+script = ExtResource("6_a0fli")
+
+[node name="CameraSensitivity" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=357019665]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/CameraSensitivity" unique_id=817155412]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.CAMERA.SENSITIVITY"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/CameraSensitivity" unique_id=2131290591]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HCameraSensitivityContainer" type="HBoxContainer" parent="ScrollContainer/Options/CameraSensitivity" unique_id=373050220 node_paths=PackedStringArray("label", "slider")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 2
+script = ExtResource("2_dold6")
+label = NodePath("CameraSensitivityLabel")
+slider = NodePath("CameraSensitivitySlider")
+
+[node name="CameraSensitivityLabel" type="Label" parent="ScrollContainer/Options/CameraSensitivity/HCameraSensitivityContainer" unique_id=1140863499]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "100"
+label_settings = SubResource("LabelSettings_rso6a")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CameraSensitivitySlider" type="HSlider" parent="ScrollContainer/Options/CameraSensitivity/HCameraSensitivityContainer" unique_id=1928046093]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../MouseSensitivity/HMouseSensitivityContainer/MouseSensitivitySlider")
+focus_neighbor_bottom = NodePath("../../../ScreenResolution/ResolutionOptionButton")
+script = ExtResource("7_k14pj")
+
+[node name="ScreenResolution" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1459168465]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/ScreenResolution" unique_id=1721463896]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.SCREEN.RESOLUTION"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/ScreenResolution" unique_id=356558567]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="ScrollContainer/Options/ScreenResolution" unique_id=1462495039]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_top = NodePath("../../CameraSensitivity/HCameraSensitivityContainer/CameraSensitivitySlider")
+focus_neighbor_bottom = NodePath("../../WindowMode/WindowModeOptionButton")
+script = ExtResource("3_4gp6r")
+
+[node name="WindowMode" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1829477884]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/WindowMode" unique_id=1642651460]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.WINDOW.MODE"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/WindowMode" unique_id=1020501163]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WindowModeOptionButton" type="OptionButton" parent="ScrollContainer/Options/WindowMode" unique_id=1487824297]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_top = NodePath("../../ScreenResolution/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../GraphicQuality/GraphicOptionButton")
+script = ExtResource("9_cu0f5")
+
+[node name="GraphicQuality" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=264827290]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/GraphicQuality" unique_id=291890736]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.GRAPHIC.QUALITY"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/GraphicQuality" unique_id=146947014]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GraphicOptionButton" type="OptionButton" parent="ScrollContainer/Options/GraphicQuality" unique_id=923543592]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_top = NodePath("../../WindowMode/WindowModeOptionButton")
+focus_neighbor_bottom = NodePath("../../Language/LanguageOptionButton")
+
+[node name="Language" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1524465844]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/Language" unique_id=63314093]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.LANGUAGE"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/Language" unique_id=595597736]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LanguageOptionButton" type="OptionButton" parent="ScrollContainer/Options/Language" unique_id=2036868680]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_top = NodePath("../../GraphicQuality/GraphicOptionButton")
+focus_neighbor_bottom = NodePath("../../CustomizeControls/ControlsButton")
+script = ExtResource("10_77fv4")
+
+[node name="CustomizeControls" type="HBoxContainer" parent="ScrollContainer/Options" unique_id=1621862861]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/Options/CustomizeControls" unique_id=893533329]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+text = "UI.SETTINGS.CUSTOMIZE.CONTROLS"
+label_settings = SubResource("LabelSettings_rso6a")
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/Options/CustomizeControls" unique_id=1217706628]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ControlsButton" type="Button" parent="ScrollContainer/Options/CustomizeControls" unique_id=201410630]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_top = NodePath("../../Language/LanguageOptionButton")
+focus_neighbor_bottom = NodePath("../../MasterVolume/HMasterContainer/MasterVolumeSlider")
+text = "UI.SETTINGS.BUTTON.CUSTOMIZE"
+script = ExtResource("2_kfd87")

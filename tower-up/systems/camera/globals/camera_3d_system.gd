@@ -1,0 +1,2 @@
+class_name Camera3DSystem
+extends Node

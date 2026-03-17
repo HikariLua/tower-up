@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c6osf3bq18xy"]
+
+[ext_resource type="Script" uid="uid://d3ekbefsf8y5p" path="res://systems/states/state_machine.gd" id="1_abrql"]
+[ext_resource type="Script" uid="uid://diynax3su0wjv" path="res://systems/components/motion/motion_component.gd" id="3_qiwj3"]
+[ext_resource type="Script" uid="uid://bntg65pvogw3t" path="res://systems/components/motion/motion_data.gd" id="4_26q78"]
+[ext_resource type="Script" uid="uid://ci8smtmvq4i4q" path="res://entities/player/states/player_state_idle.gd" id="6_qiwj3"]
+[ext_resource type="Script" uid="uid://d1j45fa8lixtd" path="res://entities/player/states/player_state_run.gd" id="7_26q78"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
+
+[sub_resource type="Resource" id="Resource_bectd"]
+script = ExtResource("4_26q78")
+max_speed = 10
+gravity = null
+metadata/_custom_type_script = "uid://bntg65pvogw3t"
+
+[node name="Player" type="CharacterBody3D" unique_id=866541521]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=936769468]
+mesh = SubResource("CapsuleMesh_sfv1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1489196759]
+shape = SubResource("CapsuleShape3D_sfv1e")
+
+[node name="Components" type="Node" parent="." unique_id=287978573]
+
+[node name="MotionComponent" type="Node" parent="Components" unique_id=746552101]
+script = ExtResource("3_qiwj3")
+data_template = SubResource("Resource_bectd")
+metadata/_custom_type_script = "uid://diynax3su0wjv"
+
+[node name="StateMachine" type="Node" parent="." unique_id=900024361 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_abrql")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=493001187 node_paths=PackedStringArray("character_body", "motion_component", "run_state")]
+script = ExtResource("6_qiwj3")
+character_body = NodePath("../..")
+motion_component = NodePath("../../Components/MotionComponent")
+run_state = NodePath("../Run")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state")]
+script = ExtResource("7_26q78")
+character_body = NodePath("../..")
+motion_component = NodePath("../../Components/MotionComponent")
+idle_state = NodePath("../Idle")
+can_be_transitioned_to = null

@@ -1,0 +1,2 @@
+class_name Camera3DController
+extends Node3D

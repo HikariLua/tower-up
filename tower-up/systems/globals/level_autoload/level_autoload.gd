@@ -1,0 +1,2 @@
+extends Node
+# SINGLETON PARA AS CENAS DO LEVEL

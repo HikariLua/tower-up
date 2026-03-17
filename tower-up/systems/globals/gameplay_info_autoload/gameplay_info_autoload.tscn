@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cx7qtf31e2g8e"]
+
+[ext_resource type="Script" uid="uid://btygotvkspd" path="res://systems/globals/gameplay_info_autoload/gameplay_info_autoload.gd" id="1_4cukh"]
+
+[node name="GameplayInfoAutoload" type="Node" unique_id=394588824]
+script = ExtResource("1_4cukh")

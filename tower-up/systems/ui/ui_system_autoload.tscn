@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dhsqoq6gwk0f5"]
+
+[ext_resource type="Script" uid="uid://cg5xjvr3vhd0o" path="res://systems/ui/ui_system.gd" id="1_5gsdp"]
+
+[node name="UISystemAutoload" type="Node" unique_id=1230834843]
+script = ExtResource("1_5gsdp")

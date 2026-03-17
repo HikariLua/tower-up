@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jht70lvoy64m"]
+
+[ext_resource type="Script" uid="uid://d3q8fb44r0wa8" path="res://systems/globals/level_autoload/level_autoload.gd" id="1_ndhe5"]
+
+[node name="LevelAutoload" type="Node" unique_id=1138107015]
+script = ExtResource("1_ndhe5")

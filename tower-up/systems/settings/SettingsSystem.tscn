@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://evnkpqy4bbx4"]
+
+[ext_resource type="Script" uid="uid://cns1wbpofsv7w" path="res://systems/settings/settings_system.gd" id="1_u3dbd"]
+
+[node name="SettingsSystem" type="Node" unique_id=184809335]
+script = ExtResource("1_u3dbd")

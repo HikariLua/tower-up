@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://biq6sk0pxrl5h"]
+
+[ext_resource type="Script" uid="uid://bx8lf5cdla1vn" path="res://temp/ui/customize_controls_menu.gd" id="1_itgtj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tma20"]
+font_size = 93
+
+[node name="CustomizeControlsMenu" type="Control" unique_id=147834655 node_paths=PackedStringArray("focus_on_ready")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itgtj")
+focus_on_ready = NodePath("Button")
+
+[node name="Label" type="Label" parent="." unique_id=778672313]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -339.0
+offset_right = 645.0
+offset_bottom = -209.1875
+grow_horizontal = 2
+grow_vertical = 2
+text = "CUSTOMIZE"
+label_settings = SubResource("LabelSettings_tma20")
+
+[node name="Button" type="Button" parent="." unique_id=1489155883]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 250.97498
+offset_top = -155.09375
+offset_right = 515.5
+offset_bottom = -124.09375
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../Button2")
+text = "01"
+
+[node name="Button2" type="Button" parent="." unique_id=1812348319]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 247.97498
+offset_top = -83.09375
+offset_right = 518.5
+offset_bottom = -51.09375
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Button")
+text = "02"
