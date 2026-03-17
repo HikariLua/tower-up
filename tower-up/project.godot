@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="3d-action-platformer-template"
+config/name="tower-up-3d"
+run/main_scene="uid://brc2gbu0l4tg3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

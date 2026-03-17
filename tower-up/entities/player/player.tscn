@@ -31,6 +31,11 @@ script = ExtResource("3_qiwj3")
 data_template = SubResource("Resource_bectd")
 metadata/_custom_type_script = "uid://diynax3su0wjv"
 
+[node name="MotionComponent" type="Node" parent="Components/MotionComponent" unique_id=1738471189]
+script = ExtResource("3_qiwj3")
+data_template = SubResource("Resource_bectd")
+metadata/_custom_type_script = "uid://diynax3su0wjv"
+
 [node name="StateMachine" type="Node" parent="." unique_id=900024361 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_abrql")
 initial_state = NodePath("Idle")

@@ -6,15 +6,6 @@
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_181qj"]
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_12ncl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dm68w"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm68w"]
-albedo_color = Color(0.30240002, 0.63, 0.31332, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
-size = Vector3(10, 0.1, 10)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
 [sub_resource type="Sky" id="Sky_x347r"]
@@ -65,17 +56,16 @@ _data = {
 &"fixed_rotation": SubResource("Animation_c3px5")
 }
 
-[node name="DebugStage" type="Node3D" unique_id=1152093587]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_12ncl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm68w"]
+albedo_color = Color(0.12880298, 0.30374524, 0.3298133, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
+size = Vector3(45, 1, 45)
+
+[node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_pmxsu")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1961792096]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1852853505]
-shape = SubResource("BoxShape3D_dm68w")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1387308986]
-material_override = SubResource("StandardMaterial3D_dm68w")
-mesh = SubResource("BoxMesh_pmxsu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650236770]
 environment = SubResource("Environment_5n7jr")
@@ -109,6 +99,31 @@ metadata/_custom_type_script = "uid://dfoxxrbfyfg28"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3DController" unique_id=45855957]
 libraries/ = SubResource("AnimationLibrary_tqplk")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1961792096]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1852853505]
+shape = SubResource("WorldBoundaryShape3D_12ncl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1387308986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47799015, 0)
+material_override = SubResource("StandardMaterial3D_dm68w")
+mesh = SubResource("BoxMesh_pmxsu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1622362196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.6, -23)
+use_collision = true
+size = Vector3(45, 43, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=2127362381]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23, -0.07520676, 22.5)
+use_collision = true
+size = Vector3(46, 43, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D" unique_id=1991328147]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23, 0.024793625, 22.5)
+use_collision = true
+size = Vector3(46, 43, 1)
 
 [editable path="Player"]
 [editable path="Camera3DController"]
