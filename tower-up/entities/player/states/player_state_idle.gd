@@ -10,13 +10,17 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var run_state: PlayerStateRun
+@export var jump_state: PlayerStateJump
 
 var motion: MotionData
 
 
+
 func _ready() -> void:
 	assert(run_state != null)
+	assert(jump_state != null)
 	local_function_transitions.create_and_add(run_state, _to_run)
+	local_function_transitions.create_and_add(jump_state, _to_jump)
 
 	assert(character_body != null)
 	assert(motion_component != null)
@@ -36,8 +40,8 @@ func _state_physics_process(delta: float) -> void:
 		motion.friction * delta
 	)
 
-	character_body.velocity.y = MotionComponent.apply_gravity(
-		motion.gravity,
+	character_body.velocity.y -= MotionComponent.apply_gravity(
+		motion.gravity * delta,
 		character_body
 	)
 
@@ -47,3 +51,7 @@ func _state_physics_process(delta: float) -> void:
 func _to_run() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
 	return DecisionResult.create(input_direction != Vector3.ZERO)
+	
+func _to_jump() -> DecisionResult:
+	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
+	return DecisionResult.create(jump_button)

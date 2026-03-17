@@ -1,4 +1,4 @@
-class_name PlayerStateRun
+class_name PlayerStateFall
 extends State
 
 
@@ -10,20 +10,18 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-
-@export var jump_state: PlayerStateJump
+@export var run_state: PlayerStateRun
 
 @export var camera_manager: Node3D
 
 var motion: MotionData
 
-
 func _ready() -> void:
 	assert(idle_state != null)
-	assert(jump_state != null )
-	
+	assert(run_state != null)
 	local_function_transitions.create_and_add(idle_state, _to_idle)
-	local_function_transitions.create_and_add(jump_state, _to_jump)
+	local_function_transitions.create_and_add(run_state, _to_run)
+	
 
 	assert(character_body != null)
 	assert(motion_component != null)
@@ -31,7 +29,8 @@ func _ready() -> void:
 
 	motion = motion_component.data
 
-
+func _on_enter() -> void:
+	print("fall")
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
@@ -57,9 +56,10 @@ func _state_physics_process(delta: float) -> void:
 
 func _to_idle() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
-	return DecisionResult.create(input_direction == Vector3.ZERO)
-	
+	var on_ground: bool = character_body.is_on_floor()
+	return DecisionResult.create(input_direction == Vector3.ZERO and on_ground)	
 
-func _to_jump() -> DecisionResult:
-	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
-	return DecisionResult.create(jump_button)
+func _to_run() -> DecisionResult:
+	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
+	var on_ground: bool = character_body.is_on_floor()
+	return DecisionResult.create(input_direction != Vector3.ZERO and on_ground)
