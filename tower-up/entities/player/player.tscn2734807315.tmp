@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://jpn27kslj1ba" path="res://entities/player/states/player_state_jump.gd" id="6_8fjmc"]
 [ext_resource type="Script" uid="uid://ci8smtmvq4i4q" path="res://entities/player/states/player_state_idle.gd" id="6_qiwj3"]
 [ext_resource type="Script" uid="uid://d1j45fa8lixtd" path="res://entities/player/states/player_state_run.gd" id="7_26q78"]
-[ext_resource type="Script" uid="uid://ce6g3kiucdaho" path="res://entities/player/states/player_state_fall.gd" id="7_qiwj3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -33,17 +32,21 @@ script = ExtResource("3_qiwj3")
 data_template = SubResource("Resource_bectd")
 metadata/_custom_type_script = "uid://diynax3su0wjv"
 
+[node name="MotionComponent" type="Node" parent="Components/MotionComponent" unique_id=1738471189]
+script = ExtResource("3_qiwj3")
+data_template = SubResource("Resource_bectd")
+metadata/_custom_type_script = "uid://diynax3su0wjv"
+
 [node name="StateMachine" type="Node" parent="." unique_id=900024361 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_abrql")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=493001187 node_paths=PackedStringArray("character_body", "motion_component", "run_state", "jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=493001187 node_paths=PackedStringArray("character_body", "motion_component", "run_state")]
 script = ExtResource("6_qiwj3")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
 run_state = NodePath("../Run")
-jump_state = NodePath("../Jump")
 
 [node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "jump_state")]
 script = ExtResource("7_26q78")
@@ -52,16 +55,5 @@ motion_component = NodePath("../../Components/MotionComponent")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=1359702380 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "fall_state")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1359702380]
 script = ExtResource("6_8fjmc")
-character_body = NodePath("../..")
-motion_component = NodePath("../../Components/MotionComponent")
-idle_state = NodePath("../Idle")
-fall_state = NodePath("../Fall")
-
-[node name="Fall" type="Node" parent="StateMachine" unique_id=1620549022 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state")]
-script = ExtResource("7_qiwj3")
-character_body = NodePath("../..")
-motion_component = NodePath("../../Components/MotionComponent")
-idle_state = NodePath("../Idle")
-run_state = NodePath("../Run")

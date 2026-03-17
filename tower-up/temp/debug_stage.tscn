@@ -79,7 +79,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8779716, 0)
 
 [node name="Run" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="1" unique_id=1563185756 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
-can_be_transitioned_to = true
+can_be_transitioned_to = null
+
+[node name="Jump" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="2" unique_id=1359702380 node_paths=PackedStringArray("camera_manager")]
+camera_manager = NodePath("../../../Camera3DController")
+
+[node name="Fall" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="3" unique_id=1620549022 node_paths=PackedStringArray("camera_manager")]
+camera_manager = NodePath("../../../Camera3DController")
 
 [node name="Camera3DController" parent="." unique_id=985451762 node_paths=PackedStringArray("state_machine", "free_camera", "fixed_camera") instance=ExtResource("3_5n7jr")]
 script = ExtResource("4_181qj")

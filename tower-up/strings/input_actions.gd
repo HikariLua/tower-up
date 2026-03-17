@@ -9,6 +9,7 @@ const MOVE_UP: StringName = "move_up"
 const MOVE_DOWN: StringName = "move_down"
 const MOVE_BACKWARD: StringName = "move_backward"
 const MOVE_FORWARD: StringName = "move_forward"
+const JUMP: StringName = "move_jump"
 
 const MOVE_ACTIONS: Array[StringName] = [
 	MOVE_LEFT,
