@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ce6g3kiucdaho" path="res://entities/player/states/player_state_fall.gd" id="7_qiwj3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
+lightmap_size_hint = Vector2i(17, 14)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 radius = 0.4423828
@@ -19,8 +20,24 @@ max_speed = 10
 gravity = null
 metadata/_custom_type_script = "uid://bntg65pvogw3t"
 
+[sub_resource type="Animation" id="Animation_26q78"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qiwj3"]
-resource_name = "Crounch"
+resource_name = "jumping"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -47,14 +64,28 @@ tracks/1/keys = {
 "values": [2.0, 1.0, 2.0]
 }
 
-[sub_resource type="Animation" id="Animation_26q78"]
-resource_name = "RESET"
-length = 0.001
+[sub_resource type="Animation" id="Animation_bectd"]
+resource_name = "running"
+length = 0.1349
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666, 0.1332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.207, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bectd"]
 _data = {
-&"Crounch": SubResource("Animation_qiwj3"),
-&"RESET": SubResource("Animation_26q78")
+&"RESET": SubResource("Animation_26q78"),
+&"jumping": SubResource("Animation_qiwj3"),
+&"running": SubResource("Animation_bectd")
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=866541521]
@@ -77,19 +108,22 @@ script = ExtResource("1_abrql")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=493001187 node_paths=PackedStringArray("character_body", "motion_component", "run_state", "jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=493001187 node_paths=PackedStringArray("character_body", "motion_component", "run_state", "jump_state", "fall_state", "animation_player")]
 script = ExtResource("6_qiwj3")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
 run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "jump_state")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "jump_state", "animation_player")]
 script = ExtResource("7_26q78")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=1359702380 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "fall_state", "animation_player")]
 script = ExtResource("6_8fjmc")
@@ -99,12 +133,14 @@ idle_state = NodePath("../Idle")
 fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Fall" type="Node" parent="StateMachine" unique_id=1620549022 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state")]
+[node name="Fall" type="Node" parent="StateMachine" unique_id=1620549022 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "animation_player")]
 script = ExtResource("7_qiwj3")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
 idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=382416899]
 libraries/ = SubResource("AnimationLibrary_bectd")
+autoplay = &"running"

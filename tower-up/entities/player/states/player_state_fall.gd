@@ -30,7 +30,8 @@ func _ready() -> void:
 	motion = motion_component.data
 
 func _on_enter() -> void:
-	print("fall")
+	animation_player.play("RESET")
+	
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)

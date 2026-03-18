@@ -15,8 +15,6 @@ extends State
 
 @export var camera_manager: Node3D
 
-@export var animation_player: AnimationPlayer
-
 var motion: MotionData
 
 func _ready() -> void:
@@ -33,7 +31,7 @@ func _ready() -> void:
 
 func _on_enter() -> void:
 	character_body.velocity.y = motion.jump_impulse
-	animation_player.play("Crounch")
+	animation_player.play("jumping")
 
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)

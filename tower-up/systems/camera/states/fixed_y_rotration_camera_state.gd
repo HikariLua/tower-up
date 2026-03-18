@@ -8,7 +8,6 @@ const FIXED_ROTATION_ANIMATION: StringName = "fixed_rotation"
 @export var rotation_degrees_step: float = 90
 
 @export var camera_controller: Camera3DController = get_parent()
-@export var animation_player: AnimationPlayer
 
 
 func _ready() -> void:

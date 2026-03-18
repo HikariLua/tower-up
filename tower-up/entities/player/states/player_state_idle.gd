@@ -11,22 +11,28 @@ extends State
 @export_group(ExportGroups.STATES)
 @export var run_state: PlayerStateRun
 @export var jump_state: PlayerStateJump
+@export var fall_state: PlayerStateFall
 
 var motion: MotionData
-
-
 
 func _ready() -> void:
 	assert(run_state != null)
 	assert(jump_state != null)
+	assert(fall_state != null)
 	local_function_transitions.create_and_add(run_state, _to_run)
 	local_function_transitions.create_and_add(jump_state, _to_jump)
-
+	local_function_transitions.create_and_add(fall_state, _to_fall)
+	
 	assert(character_body != null)
 	assert(motion_component != null)
 	assert(motion_component.data != null)
 
 	motion = motion_component.data
+
+
+func _on_enter() -> void:
+	print("idle")
+	animation_player.play("RESET")
 
 
 func _state_physics_process(delta: float) -> void:
@@ -55,3 +61,6 @@ func _to_run() -> DecisionResult:
 func _to_jump() -> DecisionResult:
 	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
 	return DecisionResult.create(jump_button)
+
+func _to_fall() -> DecisionResult:
+	return DecisionResult.create(character_body.velocity.y < 0)	

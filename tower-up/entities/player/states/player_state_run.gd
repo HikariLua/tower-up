@@ -31,6 +31,9 @@ func _ready() -> void:
 
 	motion = motion_component.data
 
+func _on_enter() -> void:
+	animation_player.play("running")
+
 
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
