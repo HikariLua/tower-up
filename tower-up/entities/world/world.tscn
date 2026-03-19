@@ -65,6 +65,15 @@ albedo_color = Color(0.12880298, 0.30374524, 0.3298133, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
 size = Vector3(100, 1, 100)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_db8ab"]
+size = Vector3(28, 1, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hl0m3"]
+size = Vector3(2, 1.8, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ftcbs"]
+size = Vector3(2, 1.8, 2)
+
 [node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_jgvb4")
 
@@ -123,9 +132,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47799015, 0)
 material_override = SubResource("StandardMaterial3D_dm68w")
 mesh = SubResource("BoxMesh_pmxsu")
 
+[node name="Area3D" type="Area3D" parent="." unique_id=411463680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.244846, 9.536743e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=572329335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.8, 0)
+shape = SubResource("BoxShape3D_db8ab")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1192705443]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 21.7, 28)
+projection = 1
+current = true
+fov = 25.1
+size = 16.888
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=183294523]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.244846, 0)
-use_collision = true
+visible = false
 radius = 21.0
 height = 40.5
 
@@ -137,6 +160,15 @@ size = Vector3(28, 41.7, 28)
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/CSGBox3D2" unique_id=1907815612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.475, -17.545155, 0)
 size = Vector3(7.0899997, 6.6, 9)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2121384942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -6.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=233708339]
+shape = SubResource("BoxShape3D_hl0m3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=760931413]
+mesh = SubResource("BoxMesh_ftcbs")
 
 [editable path="Player"]
 [editable path="Camera3DController"]
