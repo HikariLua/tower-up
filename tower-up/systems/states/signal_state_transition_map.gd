@@ -1,11 +1,13 @@
 class_name SignalStateTransitionMap
 extends RefCounted
+## A map of signal based state transitions.
 
 
+## The dictionay with the signal transitions associated with a target state.
 var transitions: Dictionary[State, SignalStateTransition] = {}
 
 
-## TODO: add docs
+## Adds a transition to the target_state in the map and connects it's signal to the callables.
 func add(target_state: State, transition: SignalStateTransition) -> void:
 	assert(target_state != null)
 	assert(not transitions.has(target_state))
@@ -15,7 +17,7 @@ func add(target_state: State, transition: SignalStateTransition) -> void:
 	transitions.get_or_add(target_state, transition)
 
 
-## TODO: add docs
+## Creates a new transition to the target_state, connects the signals to the callables and adds it to the map.
 func create_and_add(
 	signal_event: Signal,
 	target_state: State,
@@ -124,7 +126,7 @@ func add_connection(
 ) -> void:
 	assert(transitions.has(target_state))
 	assert(not signal_event.is_connected(callable))
-	transitions[target_state].add_transition(signal_event, callable)
+	transitions[target_state].add_connection(signal_event, callable)
 
 	assert(signal_event.is_connected(callable))
 
