@@ -1,17 +1,18 @@
 class_name StateMachine
 extends Node
 ## Generic finite state machine.
+## Works by limiting scripts to work one at a time.
 
 
-## Emited when transition_state is executes.
+## Emited when transition_state executes.
 signal active_state_changed(old_state: State, new_state: State)
-## TODO: add docs
+## Emited when state_machine gets enabled or disabled.
 signal activity_changed(disabled: bool)
-## TODO: add docs
+## Emited when a specific state gets enabled or disabled.
 signal state_transition_allowed_changed(state: State, enabled: bool)
 
 @export_group(ExportGroups.STATES)
-## State that will run on ready.
+## State that will run when the scene is ready.
 @export var initial_state: State
 
 @export_group(ExportGroups.ATRIBUTES)
@@ -21,12 +22,12 @@ signal state_transition_allowed_changed(state: State, enabled: bool)
 ## Current state being executed.
 var active_state: State
 
-## History of states executed.
+## History of states executed. If max_state_history_size is 0 the array will be empty.
 var state_history: Array[State] = []
 
-## TODO: add docs
+## A map with the global transiions activated by signal.
 var global_signal_transitions: SignalStateTransitionMap = SignalStateTransitionMap.new()
-## TODO: add docs
+## A map with the global transiions activated by callables.
 var global_function_transitions: FunctionStateTransitionMap = FunctionStateTransitionMap.new()
 
 var _disabled: bool = false:
@@ -97,6 +98,8 @@ func _physics_process(delta: float) -> void:
 
 
 ## Transitions to target state. You can optionaly pass a message to the target_state.
+## In case a message is passed the state will execute _on_enter_with_message instead
+## of the regular _on_enter.
 func transition_state(target_state: State, message: Dictionary = {}) -> void:
 	if _disabled:
 		return
@@ -131,12 +134,14 @@ func transition_state(target_state: State, message: Dictionary = {}) -> void:
 	active_state_changed.emit(old_state, new_state)
 
 
+## Disables a target_state, preventing any other state to transition to it.
 func disable_state(target_state: State) -> void:
 	assert(self.is_ancestor_of(target_state))
 	target_state.can_be_transitioned_to = false
 	state_transition_allowed_changed.emit(target_state, target_state.can_be_transitioned_to)
 
 
+## Enables a target_state, allowing any other state to transition to it.
 func enable_state(target_state: State) -> void:
 	assert(self.is_ancestor_of(target_state))
 	target_state.can_be_transitioned_to = true
