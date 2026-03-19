@@ -13,6 +13,10 @@ var local_function_transitions: FunctionStateTransitionMap = FunctionStateTransi
 var local_signal_transitions: SignalStateTransitionMap = SignalStateTransitionMap.new()
 
 
+## Animation player 
+@export var animation_player: AnimationPlayer
+
+
 ## TODO: add docs
 func _on_enter() -> void:
 	pass
