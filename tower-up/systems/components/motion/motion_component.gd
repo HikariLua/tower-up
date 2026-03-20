@@ -23,7 +23,6 @@ static func apply_gravity(gravity: float, character_body: CharacterBody3D, max_f
 	character_body.velocity.y -= gravity
 
 
-
 static func move_character_horizontaly(
 	character_body: CharacterBody3D,
 	direction: Vector3,
@@ -43,3 +42,21 @@ static func move_character_horizontaly(
 		target_speed * direction.z,
 		delta
 	)
+
+static func character_is_pushing(character_body: CharacterBody3D, delta: float) -> bool:
+	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)
+	
+	if collision:
+		return collision.get_collider() is RigidBody3D
+	return false 
+
+static func character_push_rigidbody(character_body: CharacterBody3D, delta: float, push_force: float) -> void: 
+	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)
+	
+	if collision:
+		if collision.get_collider() is RigidBody3D:
+			
+			var collider: RigidBody3D = collision.get_collider()
+			var push_direction : Vector3 = -collision.get_normal()
+			
+			collider.apply_impulse(push_direction * push_force) 

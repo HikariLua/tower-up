@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ufip2b15ymeo" path="res://temp/free_camera_3d_controller.tscn" id="3_0gpxm"]
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_344fq"]
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_j6qeq"]
+[ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
+[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb/bomb.tscn" id="7_hl0m3"]
+[ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]
+[ext_resource type="Script" uid="uid://cld2q7c470bhu" path="res://entities/world/generate_bricks.gd" id="9_rxgam"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -62,7 +66,10 @@ _data = {
 albedo_color = Color(0.12880298, 0.30374524, 0.3298133, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
-size = Vector3(45, 1, 45)
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7bg0"]
+size = Vector3(20, 10.6, 20)
 
 [node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_jgvb4")
@@ -75,11 +82,10 @@ transform = Transform3D(0.72092617, -0.49909043, 0.48080578, 0, 0.69379157, 0.72
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=866541521 instance=ExtResource("2_ni022")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8779716, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.077972, 0)
 
 [node name="Run" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="1" unique_id=1563185756 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
-can_be_transitioned_to = null
 
 [node name="Jump" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="2" unique_id=1359702380 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
@@ -93,8 +99,11 @@ state_machine = NodePath("StateMachine")
 free_camera = NodePath("StateMachine/FreeRotationCameraState")
 fixed_camera = NodePath("StateMachine/FixedYRotationCameraState")
 
+[node name="Camera3D" parent="Camera3DController" index="0" unique_id=1168517071]
+current = true
+
 [node name="StateMachine" parent="Camera3DController" index="1" unique_id=131885147 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("FixedYRotationCameraState")
+initial_state = NodePath("FollowingPlayerCameraState")
 
 [node name="FixedYRotationCameraState" type="Node" parent="Camera3DController/StateMachine" index="1" unique_id=1789118211 node_paths=PackedStringArray("camera_controller", "animation_player")]
 script = ExtResource("5_j6qeq")
@@ -102,6 +111,12 @@ rotation_degrees_step = 45.0
 camera_controller = NodePath("../..")
 animation_player = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://dfoxxrbfyfg28"
+
+[node name="FollowingPlayerCameraState" type="Node" parent="Camera3DController/StateMachine" index="2" unique_id=801087253 node_paths=PackedStringArray("camera_controller", "player")]
+script = ExtResource("6_db8ab")
+camera_controller = NodePath("../..")
+player = NodePath("../../../Player")
+metadata/_custom_type_script = "uid://bx0qvhe41p2bl"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3DController" unique_id=45855957]
 libraries/ = SubResource("AnimationLibrary_tqplk")
@@ -116,20 +131,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47799015, 0)
 material_override = SubResource("StandardMaterial3D_dm68w")
 mesh = SubResource("BoxMesh_pmxsu")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1622362196]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.6, -23)
-use_collision = true
-size = Vector3(45, 43, 1)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1192705443]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 21.7, 28)
+projection = 1
+fov = 25.1
+size = 16.888
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=2127362381]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23, -0.07520676, 22.5)
-use_collision = true
-size = Vector3(46, 43, 1)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=183294523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.244846, 0)
+visible = false
+radius = 21.0
+height = 40.5
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D" unique_id=1991328147]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23, 0.024793625, 22.5)
-use_collision = true
-size = Vector3(46, 43, 1)
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D" unique_id=1659365613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4051533, 0)
+operation = 2
+size = Vector3(28, 41.7, 28)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/CSGBox3D2" unique_id=1907815612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.475, -17.545155, 0)
+size = Vector3(7.0899997, 6.6, 9)
+
+[node name="Bomb" parent="." unique_id=1519710370 instance=ExtResource("7_hl0m3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
+
+[node name="Bricks" parent="." unique_id=38351881 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4.8, -7.5)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=699572254 node_paths=PackedStringArray("collision_shape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("9_rxgam")
+collision_shape = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1114665991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
+shape = SubResource("BoxShape3D_e7bg0")
 
 [editable path="Player"]
 [editable path="Camera3DController"]

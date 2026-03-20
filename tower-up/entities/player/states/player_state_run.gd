@@ -10,8 +10,8 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-
 @export var jump_state: PlayerStateJump
+@export var fall_state: PlayerStateFall
 
 @export var camera_manager: Node3D
 
@@ -21,9 +21,11 @@ var motion: MotionData
 func _ready() -> void:
 	assert(idle_state != null)
 	assert(jump_state != null )
+	assert(fall_state != null )
 	
 	local_function_transitions.create_and_add(idle_state, _to_idle)
 	local_function_transitions.create_and_add(jump_state, _to_jump)
+	#local_function_transitions.create_and_add(fall_state, _to_fall)
 
 	assert(character_body != null)
 	assert(motion_component != null)
@@ -56,7 +58,7 @@ func _state_physics_process(delta: float) -> void:
 		motion.max_fall_velocity
 	)
 
-	character_body.move_and_slide()
+	MotionComponent.character_push_rigidbody(character_body, delta, motion.push_force)
 
 
 func _to_idle() -> DecisionResult:
@@ -67,3 +69,6 @@ func _to_idle() -> DecisionResult:
 func _to_jump() -> DecisionResult:
 	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
 	return DecisionResult.create(jump_button)
+
+
+##TODO: adiciona funçao de push (p.s: usar MotionComponent.character_is_pushing)
