@@ -89,6 +89,7 @@ camera_manager = NodePath("../../../Camera3DController")
 
 [node name="Jump" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="2" unique_id=1359702380 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
+can_be_transitioned_to = null
 
 [node name="Fall" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="3" unique_id=1620549022 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")

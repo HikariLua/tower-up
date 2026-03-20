@@ -11,14 +11,20 @@ func _enter_tree() -> void:
 	data = initialize_data(data_template)
 
 
-static func apply_gravity(gravity: float, character_body: CharacterBody3D, max_fall_speed: float = 0.0) -> void:
+static func apply_gravity(gravity: float, character_body: CharacterBody3D, _max_fall_speed: float = 0.) -> void:
 	assert(character_body != null)
 	if character_body.is_on_floor():
 		return
-
-	if character_body.velocity.y <= -max_fall_speed and max_fall_speed != 0: 
-		character_body.velocity.y -= gravity
-		return
+	if character_body.velocity.y > 0.75 and character_body.velocity.y > _max_fall_speed: 
+		character_body.velocity.y -= gravity/2
+		return 
+	if character_body.velocity.y < 0: 
+		character_body.velocity.y -= gravity * 2.5
+		return 
+	#if character_body.velocity.y <= -max_fall_speed and max_fall_speed != 0: 
+		#character_body.velocity.y -= gravity
+		#return
+	#
 
 	character_body.velocity.y -= gravity
 
@@ -30,19 +36,33 @@ static func move_character_horizontaly(
 	delta: float
 ) -> void:
 	direction = direction.normalized()
+	var air_resistence : float = 1.2;
 
-	character_body.velocity.x = move_toward(
-		character_body.velocity.x,
-		target_speed * direction.x,
-		delta
-	)
+	if character_body.velocity.y == 0:
+		character_body.velocity.x = move_toward(
+			character_body.velocity.x,
+			target_speed * direction.x,
+			delta
+		)
 
-	character_body.velocity.z = move_toward(
-		character_body.velocity.z,
-		target_speed * direction.z,
-		delta
-	)
+		character_body.velocity.z = move_toward(
+			character_body.velocity.z,
+			target_speed * direction.z,
+			delta
+		)
+		
+	elif character_body.velocity.y > 0: 
+		character_body.velocity.x = move_toward(
+			character_body.velocity.x,
+			target_speed * direction.x,
+			delta/air_resistence
+		)
 
+		character_body.velocity.z = move_toward(
+			character_body.velocity.z,
+			target_speed * direction.z,
+			delta/air_resistence
+		)
 static func character_is_pushing(character_body: CharacterBody3D, delta: float) -> bool:
 	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)
 	

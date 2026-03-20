@@ -156,7 +156,7 @@ size = Vector3(7.0899997, 6.6, 9)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
 
 [node name="Bricks" parent="." unique_id=38351881 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 0.8000002, -7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4.8, -7.5)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=699572254 node_paths=PackedStringArray("collision_shape")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, -10)
