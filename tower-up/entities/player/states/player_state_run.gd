@@ -10,8 +10,8 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-
 @export var jump_state: PlayerStateJump
+@export var fall_state: PlayerStateFall
 
 @export var camera_manager: Node3D
 
@@ -21,9 +21,11 @@ var motion: MotionData
 func _ready() -> void:
 	assert(idle_state != null)
 	assert(jump_state != null )
+	assert(fall_state != null )
 	
 	local_function_transitions.create_and_add(idle_state, _to_idle)
 	local_function_transitions.create_and_add(jump_state, _to_jump)
+	#local_function_transitions.create_and_add(fall_state, _to_fall)
 
 	assert(character_body != null)
 	assert(motion_component != null)

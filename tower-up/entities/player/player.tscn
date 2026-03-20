@@ -176,12 +176,13 @@ jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "jump_state", "animation_player")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "jump_state", "fall_state", "animation_player")]
 script = ExtResource("7_26q78")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=1359702380 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "fall_state", "animation_player")]
