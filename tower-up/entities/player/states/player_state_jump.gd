@@ -41,17 +41,17 @@ func _state_physics_process(delta: float) -> void:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction().normalized()
 	var direction: Vector3 = camera_manager.transform.basis * input_direction
 
-	character_body.velocity = MotionComponent.move_character_horizontaly(
-		character_body.velocity,
+	MotionComponent.move_character_horizontaly(
+		character_body,
 		direction,
 		motion.max_speed,
 		motion.acceleration * delta
 	)
 	
-	character_body.velocity.y -= MotionComponent.apply_gravity(
+	MotionComponent.apply_gravity(
 		motion.gravity * delta,
 		character_body,
-		motion.max_fall_velocity,
+		motion.max_fall_velocity
 	)
 
 

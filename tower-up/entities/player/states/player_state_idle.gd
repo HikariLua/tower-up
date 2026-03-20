@@ -39,16 +39,17 @@ func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
 
-	character_body.velocity = MotionComponent.move_character_horizontaly(
-		character_body.velocity,
+	MotionComponent.move_character_horizontaly(
+		character_body,
 		Vector3.ZERO,
 		0,
 		motion.friction * delta
 	)
 
-	character_body.velocity.y -= MotionComponent.apply_gravity(
+	MotionComponent.apply_gravity(
 		motion.gravity * delta,
-		character_body
+		character_body,
+		motion.max_fall_velocity
 	)
 
 	character_body.move_and_slide()
