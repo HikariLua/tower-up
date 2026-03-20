@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_j6qeq"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
 [ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/Bomb.tscn" id="7_hl0m3"]
+[ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -69,12 +70,6 @@ size = Vector3(100, 1, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_db8ab"]
 size = Vector3(28, 1, 28)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hl0m3"]
-size = Vector3(2, 1.8, 2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ftcbs"]
-size = Vector3(2, 1.8, 2)
-
 [node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_jgvb4")
 
@@ -90,7 +85,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8779716, 0)
 
 [node name="Run" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="1" unique_id=1563185756 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
-can_be_transitioned_to = null
 
 [node name="Jump" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="2" unique_id=1359702380 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
@@ -103,6 +97,9 @@ script = ExtResource("4_344fq")
 state_machine = NodePath("StateMachine")
 free_camera = NodePath("StateMachine/FreeRotationCameraState")
 fixed_camera = NodePath("StateMachine/FixedYRotationCameraState")
+
+[node name="Camera3D" parent="Camera3DController" index="0" unique_id=1168517071]
+current = true
 
 [node name="StateMachine" parent="Camera3DController" index="1" unique_id=131885147 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("FollowingPlayerCameraState")
@@ -143,7 +140,6 @@ shape = SubResource("BoxShape3D_db8ab")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1192705443]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 21.7, 28)
 projection = 1
-current = true
 fov = 25.1
 size = 16.888
 
@@ -162,17 +158,17 @@ size = Vector3(28, 41.7, 28)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.475, -17.545155, 0)
 size = Vector3(7.0899997, 6.6, 9)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2121384942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -6.1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=233708339]
-shape = SubResource("BoxShape3D_hl0m3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=760931413]
-mesh = SubResource("BoxMesh_ftcbs")
-
 [node name="Bomb" parent="." unique_id=1519710370 instance=ExtResource("7_hl0m3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
+
+[node name="Bricks" parent="." unique_id=38351881 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -7.5)
+
+[node name="Bricks2" parent="." unique_id=2130037253 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -5.49)
+
+[node name="Bricks3" parent="." unique_id=2136208318 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -3.4899995)
 
 [editable path="Player"]
 [editable path="Camera3DController"]
