@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_344fq"]
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_j6qeq"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
-[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb.tscn" id="7_hl0m3"]
+[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb/bomb.tscn" id="7_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]
+[ext_resource type="Script" uid="uid://cld2q7c470bhu" path="res://entities/world/generate_bricks.gd" id="9_rxgam"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -67,8 +68,8 @@ albedo_color = Color(0.12880298, 0.30374524, 0.3298133, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_db8ab"]
-size = Vector3(28, 1, 28)
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7bg0"]
+size = Vector3(20, 10.6, 20)
 
 [node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_jgvb4")
@@ -81,7 +82,7 @@ transform = Transform3D(0.72092617, -0.49909043, 0.48080578, 0, 0.69379157, 0.72
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=866541521 instance=ExtResource("2_ni022")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8779716, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.077972, 0)
 
 [node name="Run" parent="Player/StateMachine" parent_id_path=PackedInt32Array(866541521, 900024361) index="1" unique_id=1563185756 node_paths=PackedStringArray("camera_manager")]
 camera_manager = NodePath("../../../Camera3DController")
@@ -130,13 +131,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47799015, 0)
 material_override = SubResource("StandardMaterial3D_dm68w")
 mesh = SubResource("BoxMesh_pmxsu")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=411463680]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.244846, 9.536743e-07)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=572329335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.8, 0)
-shape = SubResource("BoxShape3D_db8ab")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1192705443]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 21.7, 28)
 projection = 1
@@ -162,13 +156,16 @@ size = Vector3(7.0899997, 6.6, 9)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
 
 [node name="Bricks" parent="." unique_id=38351881 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4.8, -7.5)
 
-[node name="Bricks2" parent="." unique_id=2130037253 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -5.49)
+[node name="Area3D" type="Area3D" parent="." unique_id=699572254 node_paths=PackedStringArray("collision_shape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("9_rxgam")
+collision_shape = NodePath("CollisionShape3D")
 
-[node name="Bricks3" parent="." unique_id=2136208318 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5999994, 4, -3.4899995)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1114665991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
+shape = SubResource("BoxShape3D_e7bg0")
 
 [editable path="Player"]
 [editable path="Camera3DController"]
