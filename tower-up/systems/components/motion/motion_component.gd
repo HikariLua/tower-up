@@ -43,6 +43,12 @@ static func move_character_horizontaly(
 		delta
 	)
 
+static func character_is_pushing(character_body: CharacterBody3D, delta: float) -> bool:
+	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)
+	
+	if collision:
+		return collision.get_collider() is RigidBody3D
+	return false 
 
 static func character_push_rigidbody(character_body: CharacterBody3D, delta: float, push_force: float) -> void: 
 	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)

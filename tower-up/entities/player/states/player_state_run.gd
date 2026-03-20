@@ -69,3 +69,6 @@ func _to_idle() -> DecisionResult:
 func _to_jump() -> DecisionResult:
 	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
 	return DecisionResult.create(jump_button)
+
+
+##TODO: adiciona funçao de push (p.s: usar MotionComponent.character_is_pushing)
