@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0yxehbs1xbm6"]
 
-[ext_resource type="PackedScene" uid="uid://cvrcq1mk67fwl" path="res://bomb_mesh.tscn" id="1_n2yov"]
+[ext_resource type="PackedScene" uid="uid://cvrcq1mk67fwl" path="res://entities/bomb_mesh.tscn" id="1_n2yov"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_am81k"]
 radius = 0.96999997

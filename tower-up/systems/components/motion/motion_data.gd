@@ -7,3 +7,4 @@ extends Resource
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_impulse: float = 10
 @export var max_fall_velocity: float = 52
+@export var push_force: float = 0.5

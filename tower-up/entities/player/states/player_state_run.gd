@@ -55,7 +55,15 @@ func _state_physics_process(delta: float) -> void:
 		character_body
 	)
 
-	character_body.move_and_slide()
+	var collision: KinematicCollision3D  = character_body.move_and_collide(character_body.velocity * delta)
+	
+	if collision:
+		if collision.get_collider() is RigidBody3D:
+			
+			var collider: RigidBody3D = collision.get_collider()
+			var push_direction : Vector3 = -collision.get_normal()
+			
+			collider.apply_impulse(push_direction * motion.push_force) 
 
 
 func _to_idle() -> DecisionResult:
