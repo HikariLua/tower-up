@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_344fq"]
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_j6qeq"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
+[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/Bomb.tscn" id="7_hl0m3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -169,6 +170,9 @@ shape = SubResource("BoxShape3D_hl0m3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=760931413]
 mesh = SubResource("BoxMesh_ftcbs")
+
+[node name="Bomb" parent="." unique_id=1519710370 instance=ExtResource("7_hl0m3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
 
 [editable path="Player"]
 [editable path="Camera3DController"]
