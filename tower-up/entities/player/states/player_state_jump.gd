@@ -10,8 +10,8 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-
 @export var fall_state: PlayerStateFall
+#@export var jump_state: PlayerStateJump
 
 @export var camera_manager: Node3D
 
@@ -22,6 +22,7 @@ func _ready() -> void:
 	#local_function_transitions.create_and_add(idle_state, _to_idle)
 
 	local_function_transitions.create_and_add(fall_state, _to_fall)
+	#local_function_transitions.create_and_add(jump_state, _to_jump)
 
 	assert(character_body != null)
 	assert(motion_component != null)
@@ -30,7 +31,7 @@ func _ready() -> void:
 	motion = motion_component.data
 
 func _on_enter() -> void:
-	character_body.velocity.y = motion.jump_impulse
+	character_body.velocity.y += motion.jump_impulse
 	animation_player.play("jumping")
 
 func _state_physics_process(delta: float) -> void:
@@ -51,9 +52,10 @@ func _state_physics_process(delta: float) -> void:
 	MotionComponent.apply_gravity(
 		motion.gravity * delta,
 		character_body,
-		motion.max_fall_velocity
+		motion.max_fall_velocity, 
+		
 	)
-
+	print(character_body.velocity.y)
 
 	character_body.move_and_slide()
 
@@ -63,4 +65,8 @@ func _to_idle() -> DecisionResult:
 	return DecisionResult.create(input_direction == Vector3.ZERO)	
 	
 func _to_fall() -> DecisionResult:
-	return DecisionResult.create(character_body.velocity.y < 0)	
+	return DecisionResult.create(character_body.velocity.y <= 0)	
+	
+#func _to_jump() -> DecisionResult:
+	#var input_jump: bool = Input.is_action_just_pressed(InputActions.JUMP)
+	#return DecisionResult.create(input_jump)
