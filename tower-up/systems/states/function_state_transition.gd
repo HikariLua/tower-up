@@ -1,18 +1,20 @@
 class_name FunctionStateTransition
 extends RefCounted
+## A callable based state transition.
 
 
-## TODO: add docs
+## Controls the activity of the transition. When true the callable always returns false.
 var disabled: bool = false
-## TODO: add docs
+## The priority of the transition, the higher the number higher the priority.
 var priority: int = 0:
 	set = change_priority
 
-## TODO: add docs
 var _condition_callable: Callable 
 
 
-## TODO: add docs
+## Creates a new transition using a callable to verify if the transitino should or not happen.
+## The callable signature should not accept any arguments and should always
+## return a DecisionResult
 static func create(callable: Callable, local_priority: int = 0) -> FunctionStateTransition:
 	assert(callable.is_valid())
 	assert(callable.get_argument_count() == 0)
@@ -24,7 +26,7 @@ static func create(callable: Callable, local_priority: int = 0) -> FunctionState
 	return transition
 
 
-## TODO: add docs
+## Calls the callable associated with the transition to check if it should transition and returns it's DecisionResult.
 func check_transition() -> DecisionResult:
 	if disabled:
 		return DecisionResult.create(false)
@@ -35,5 +37,6 @@ func check_transition() -> DecisionResult:
 	return decision_result
 
 
+## Changes the transition's priority.
 func change_priority(new_priority: int) -> void:
 	priority = new_priority

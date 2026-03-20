@@ -11,37 +11,35 @@ func _enter_tree() -> void:
 	data = initialize_data(data_template)
 
 
-static func apply_gravity(gravity: float, character_body: CharacterBody3D, max_fall_speed: float = 0.0) -> float:
+static func apply_gravity(gravity: float, character_body: CharacterBody3D, max_fall_speed: float = 0.0) -> void:
 	assert(character_body != null)
 	if character_body.is_on_floor():
-		return 0.0
-	## Character Jumps
+		return
+
 	if character_body.velocity.y <= -max_fall_speed and max_fall_speed != 0: 
-		return 0.0
-	
-	
-	return gravity
+		character_body.velocity.y -= gravity
+		return
+
+	character_body.velocity.y -= gravity
+
 
 
 static func move_character_horizontaly(
-	velocity: Vector3,
+	character_body: CharacterBody3D,
 	direction: Vector3,
 	target_speed: float,
 	delta: float
-) -> Vector3:
-	var vector: Vector3 = velocity
+) -> void:
 	direction = direction.normalized()
 
-	vector.x = move_toward(
-		velocity.x,
+	character_body.velocity.x = move_toward(
+		character_body.velocity.x,
 		target_speed * direction.x,
 		delta
 	)
 
-	vector.z = move_toward(
-		velocity.z,
+	character_body.velocity.z = move_toward(
+		character_body.velocity.z,
 		target_speed * direction.z,
 		delta
 	)
-
-	return vector
