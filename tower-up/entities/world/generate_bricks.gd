@@ -7,7 +7,7 @@ const PLAYER_HEIGHT: float = 2;
 const BrickScene : PackedScene = preload("res://entities/blocks/bricks/bricks.tscn")
 @export var collision_shape : CollisionShape3D
 
-func insert_brick(brick: Node3D, x: int, y: int, z: int) -> void:
+func insert_brick(brick: Node3D, x: float, y: float, z: float) -> void:
 	add_child(brick)
 	brick.position = Vector3(x * BRICK_SIZE, 
 			y, z * BRICK_SIZE)
@@ -15,50 +15,51 @@ func insert_brick(brick: Node3D, x: int, y: int, z: int) -> void:
 func _ready() -> void:
 	assert(collision_shape != null)
 	var shape: BoxShape3D = collision_shape.shape 
-	var count_x : int = floor(shape.size.x / BRICK_SIZE)
-	var count_y : int = floor(shape.size.y / BRICK_SIZE)
-	var count_z : int = floor(shape.size.z / BRICK_SIZE)
-	#var count_of_bricks_x : int = floor(shape.size.x / BRICK_SIZE)
-	#var count_of_bricks_z : int = floor(shape.size.z / BRICK_SIZE)
-	
-	print(
-		'size.x:', shape.size.x, '\n',
-		'size.z:', shape.size.z, '\n',
-		'position', position, '\n',
-	)
+	var count: Vector3 = Vector3(
+			floorf(shape.size.x / BRICK_SIZE),
+			floorf(shape.size.y / BRICK_SIZE),
+			floorf(shape.size.z / BRICK_SIZE))
+			
 	
 	#var start_pos_x : int = floor(position.x - shape.size.x/2)
 	#var start_pos_z : int = floor(position.z - shape.size.z/2)
+		
+	var current: Vector3 = Vector3(0,0,0);
 	
-	for i : int in count_x:
-		for j : int in count_y:
-			for k : int in count_z:
-				var brick: Node3D = BrickScene.instantiate();
-				
-				var step : float = ceil(PLAYER_HEIGHT/2)
-				if brick: 
-					if  j%ceili(PLAYER_HEIGHT * 4) == 0: 
-						if k < PLAYER_HEIGHT:
-							insert_brick(brick, i, j, k)
-									
-						elif i >= (count_x - PLAYER_HEIGHT):
-							if k < (count_z - PLAYER_HEIGHT):
-								insert_brick(brick, i, j, k)
-					
-					elif j%ceili(PLAYER_HEIGHT * 2) == 0:
-						if i < PLAYER_HEIGHT:
-							if k >= PLAYER_HEIGHT:
-								insert_brick(brick, i, j, k)
-						
-					elif j%ceili(PLAYER_HEIGHT * 2) == 0:
-						if i < PLAYER_HEIGHT:
-							if k >= PLAYER_HEIGHT:
-								insert_brick(brick, i, j, k)
-						else:
-							if k >= (count_z - PLAYER_HEIGHT):
-								insert_brick(brick, i, j, k)
-					elif j <= step:
-						if i < PLAYER_HEIGHT  and k < PLAYER_HEIGHT:
-							insert_brick(brick, i, j, k)
-				else:
-					print("no bricks")
+	# Direita, Cima, Esquerda, Baixo
+	const DIRECTIONS : Array[Vector2i] = [
+			Vector2i(1,0), 
+			Vector2i(0,1), 
+			Vector2i(-1, 0), 
+			Vector2i(0, -1)]
+	
+	var dir_index : int = 0
+	
+	var min_x : float = 0
+	var max_x : float = ceil(count.x - 1)
+	var min_z : float = 0
+	var max_z : float = ceil(count.z - 1)
+	
+	var total_steps: float = shape.size.y * shape.size.x
+	for step: int in range(total_steps):
+		var brick: Node3D = BrickScene.instantiate()
+		insert_brick(brick, current.x, current.y, current.z)
+		
+		current.y += 1
+		
+		var next_x: float = current.x + DIRECTIONS[dir_index].x
+		var next_z: float = current.z + DIRECTIONS[dir_index].y
+		
+		if next_x > max_x or next_x < min_x or next_z > max_z or next_z < min_z:
+			dir_index = (dir_index + 1) % 4
+			
+			#next_dir = directions[dir_index]
+			current.x += DIRECTIONS[dir_index].x
+			current.z += DIRECTIONS[dir_index].y
+		else:
+			current.x = next_x
+			current.z = next_z
+		
+		
+		
+		
