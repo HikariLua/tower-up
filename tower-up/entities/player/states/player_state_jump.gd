@@ -12,8 +12,8 @@ extends State
 @export var idle_state: PlayerStateIdle
 @export var fall_state: PlayerStateFall
 #@export var jump_state: PlayerStateJump
-
-@export var camera_manager: Node3D
+@export_group(ExportGroups.CAMERAS)
+@export var camera_controller: Camera3DController
 
 var motion: MotionData
 
@@ -37,10 +37,10 @@ func _on_enter() -> void:
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
-	assert(camera_manager != null)
+	assert(camera_controller != null)
 
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction().normalized()
-	var direction: Vector3 = camera_manager.transform.basis * input_direction
+	var direction: Vector3 = camera_controller.transform.basis * input_direction
 
 	MotionComponent.move_character_horizontaly(
 		character_body,

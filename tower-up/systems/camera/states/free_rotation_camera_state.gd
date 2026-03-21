@@ -24,8 +24,8 @@ func _state_input(event: InputEvent) -> void:
 	camera_controller.rotation.y += deg_to_rad(y_rotation * -1)
 
 
-func _on_enter() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#func _on_enter() -> void:
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _state_physics_process(delta: float) -> void:
@@ -44,5 +44,5 @@ func _state_physics_process(delta: float) -> void:
 	camera_controller.rotation.y += deg_to_rad(y_rotation)
 
 
-func _on_exit() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#func _on_exit() -> void:
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

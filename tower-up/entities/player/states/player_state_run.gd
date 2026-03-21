@@ -12,8 +12,8 @@ extends State
 @export var idle_state: PlayerStateIdle
 @export var jump_state: PlayerStateJump
 @export var fall_state: PlayerStateFall
-
-@export var camera_manager: Node3D
+@export_group(ExportGroups.CAMERAS)
+@export var camera_manager: Camera3DController
 
 var motion: MotionData
 

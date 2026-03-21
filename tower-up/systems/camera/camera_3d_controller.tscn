@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b2knsmyh2hucs" path="res://systems/camera/camera_3d_controller.gd" id="1_5vjsy"]
 [ext_resource type="Script" uid="uid://d3ekbefsf8y5p" path="res://systems/states/state_machine.gd" id="2_c3px5"]
+[ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="3_k01hc"]
+[ext_resource type="Script" uid="uid://clirwxejqakb1" path="res://systems/camera/states/free_rotation_camera_state.gd" id="4_vf5q3"]
+[ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="5_1uwh2"]
 
 [sub_resource type="Animation" id="Animation_5vjsy"]
 length = 0.001
@@ -40,9 +43,13 @@ _data = {
 &"fixed_rotation": SubResource("Animation_c3px5")
 }
 
-[node name="FixedYRotationCameraController" type="Node3D" unique_id=1431127016]
+[node name="Camera3DController" type="Node3D" unique_id=1431127016 node_paths=PackedStringArray("state_machine", "free_camera", "fixed_camera", "follow_camera")]
 top_level = true
 script = ExtResource("1_5vjsy")
+state_machine = NodePath("CameraStateMachine")
+free_camera = NodePath("CameraStateMachine/FreeRotationCameraState")
+fixed_camera = NodePath("CameraStateMachine/FixedYRotationCameraState")
+follow_camera = NodePath("CameraStateMachine/FollowingPlayerCameraState")
 metadata/_custom_type_script = "uid://b2knsmyh2hucs"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1358638629]
@@ -50,6 +57,24 @@ metadata/_custom_type_script = "uid://b2knsmyh2hucs"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=657660402]
 libraries/ = SubResource("AnimationLibrary_gbihy")
 
-[node name="CameraStateMachine" type="Node" parent="." unique_id=424377367]
+[node name="CameraStateMachine" type="Node" parent="." unique_id=424377367 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_c3px5")
+initial_state = NodePath("FollowingPlayerCameraState")
 metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
+
+[node name="FixedYRotationCameraState" type="Node" parent="CameraStateMachine" unique_id=1941946593 node_paths=PackedStringArray("camera_controller", "animation_player")]
+script = ExtResource("3_k01hc")
+camera_controller = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://dfoxxrbfyfg28"
+
+[node name="FreeRotationCameraState" type="Node" parent="CameraStateMachine" unique_id=630267808 node_paths=PackedStringArray("camera_controller", "animation_player")]
+script = ExtResource("4_vf5q3")
+camera_controller = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://clirwxejqakb1"
+
+[node name="FollowingPlayerCameraState" type="Node" parent="CameraStateMachine" unique_id=377718736 node_paths=PackedStringArray("camera_controller")]
+script = ExtResource("5_1uwh2")
+camera_controller = NodePath("../..")
+metadata/_custom_type_script = "uid://bx0qvhe41p2bl"

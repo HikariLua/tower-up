@@ -51,6 +51,14 @@ func _ready() -> void:
 		var next_z: float = current.z + DIRECTIONS[dir_index].y
 		
 		if next_x > max_x or next_x < min_x or next_z > max_z or next_z < min_z:
+						
+			# Atualiza os limites para o caracol "fechar" e não sobrepor
+			if dir_index == 0: min_z += 1 # Terminou a linha superior
+			elif dir_index == 1: max_x -= 1 # Terminou a coluna direita
+			elif dir_index == 2: max_z -= 1 # Terminou a linha inferior
+			elif dir_index == 3: min_x += 1 # Terminou a coluna esquerda
+			
+			# muda direção
 			dir_index = (dir_index + 1) % 4
 			
 			#next_dir = directions[dir_index]
@@ -59,7 +67,4 @@ func _ready() -> void:
 		else:
 			current.x = next_x
 			current.z = next_z
-		
-		
-		
 		

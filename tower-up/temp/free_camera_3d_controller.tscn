@@ -22,9 +22,8 @@ script = ExtResource("2_se2h8")
 initial_state = NodePath("FreeRotationCameraState")
 metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
 
-[node name="FreeRotationCameraState" type="Node" parent="StateMachine" unique_id=2045614739 node_paths=PackedStringArray("input_component", "camera_controller")]
+[node name="FreeRotationCameraState" type="Node" parent="StateMachine" unique_id=2045614739 node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("3_cofaj")
-input_component = NodePath("../../InputComponent")
 camera_controller = NodePath("../..")
 metadata/_custom_type_script = "uid://clirwxejqakb1"
 
@@ -32,3 +31,14 @@ metadata/_custom_type_script = "uid://clirwxejqakb1"
 script = ExtResource("4_ekbhk")
 data_template = SubResource("Resource_bkpaq")
 metadata/_custom_type_script = "uid://dhhbv3his8cq7"
+
+[node name="Label" type="Label" parent="." unique_id=238230614]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
