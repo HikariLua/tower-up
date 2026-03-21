@@ -1,5 +1,7 @@
 [gd_scene format=4 uid="uid://bj72r2fryccad"]
 
+[sub_resource type="MultiMesh" id="MultiMesh_86kro"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk6p2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e0vwj"]
@@ -101,19 +103,23 @@ size = Vector3(2, 1.8, 2)
 
 [node name="Bricks" type="Node3D" unique_id=38351881]
 
-[node name="Cube_001" type="MeshInstance3D" parent="." unique_id=943672992]
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=395183103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03495139, 0)
+multimesh = SubResource("MultiMesh_86kro")
+
+[node name="Cube_001" type="MeshInstance3D" parent="MultiMeshInstance3D" unique_id=943672992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07597244, 0)
 mesh = SubResource("ArrayMesh_86kro")
 
-[node name="Cube_003" type="MeshInstance3D" parent="." unique_id=1280219324]
-transform = Transform3D(5.364418e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 5.364418e-07, 0, 0.6, 0)
+[node name="Cube_003" type="MeshInstance3D" parent="MultiMeshInstance3D" unique_id=1280219324]
+transform = Transform3D(5.364418e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 5.364418e-07, 0, 0.5240276, 0)
 mesh = SubResource("ArrayMesh_oyuuo")
 
-[node name="Cube_004" type="MeshInstance3D" parent="." unique_id=1181769332]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+[node name="Cube_004" type="MeshInstance3D" parent="MultiMeshInstance3D" unique_id=1181769332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1240276, 0)
 mesh = SubResource("ArrayMesh_p5fcw")
 
 [node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=159273314]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1220358875]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_c04s3")
