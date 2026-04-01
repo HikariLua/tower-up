@@ -1,6 +1,10 @@
-class_name PlayerStateJump
+class_name PlayerStateBackflip
 extends State
 
+
+@export_group(ExportGroups.ATRIBUTES)
+@export var jump_impulse_multiplier: float = 1.2
+@export var backflip_push_force: float = 2
 
 @export_group(ExportGroups.BODIES)
 @export var character_body: CharacterBody3D
@@ -10,20 +14,14 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-@export var fall_state: PlayerStateFall
 
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
 
 var motion: MotionData
 
-var _max_jump_horizontal_speed: float = 0
-
 
 func _ready() -> void:
-	assert(fall_state != null)
-	local_function_transitions.create_and_add(fall_state, _to_fall)
-
 	assert(idle_state != null)
 	local_function_transitions.create_and_add(idle_state, _to_idle)
 
@@ -36,36 +34,22 @@ func _ready() -> void:
 
 
 func _on_enter() -> void:
-	character_body.velocity.y = motion.jump_impulse
+	character_body.velocity.y = motion.jump_impulse * jump_impulse_multiplier
 
-	var horizontal_speed: float = MotionComponent.get_horizontal_speed(character_body.velocity)
-	_max_jump_horizontal_speed = max(horizontal_speed, motion.base_speed)
+	var backward_direction: Vector3 = MotionComponent.get_foward_direction(
+		character_body.transform.basis.z
+	)
 
-	animation_player.play("jumping")
+	character_body.velocity.x = backflip_push_force * backward_direction.x
+	character_body.velocity.z = backflip_push_force * backward_direction.z
+
+	animation_player.play("backflip")
 
 
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
 
-	var direction: Vector3 = InputComponent.get_relative_motion_input_direction(
-		CameraSystem.active_controller
-	)
-
-	AnimationComponent.rotate_horizontaly(
-		character_body,
-		direction,
-		delta
-	)
-
-	MotionComponent.move_character_horizontaly_with_momentum(
-		character_body,
-		direction,
-		motion.base_speed,
-		_max_jump_horizontal_speed,
-		motion.air_acceleration * delta
-	)
-	
 	MotionComponent.apply_gravity(
 		character_body,
 		motion.gravity * delta,
@@ -78,7 +62,3 @@ func _state_physics_process(delta: float) -> void:
 func _to_idle() -> DecisionResult:
 	var on_ground: bool = character_body.is_on_floor()
 	return DecisionResult.create(on_ground)	
-	
-
-func _to_fall() -> DecisionResult:
-	return DecisionResult.create(character_body.velocity.y <= 0)	

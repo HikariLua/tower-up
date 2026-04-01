@@ -12,45 +12,62 @@ extends State
 @export var idle_state: PlayerStateIdle
 @export var run_state: PlayerStateRun
 
-@export var camera_manager: Node3D
+@export_group(ExportGroups.ANIMATION)
+@export var animation_player: AnimationPlayer
 
 var motion: MotionData
 
+var _max_fall_horizontal_speed: float = 0
+
+
 func _ready() -> void:
 	assert(idle_state != null)
-	assert(run_state != null)
 	local_function_transitions.create_and_add(idle_state, _to_idle)
+
+	assert(run_state != null)
 	local_function_transitions.create_and_add(run_state, _to_run)
 	
-
 	assert(character_body != null)
+	assert(animation_player != null)
 	assert(motion_component != null)
 	assert(motion_component.data != null)
 
 	motion = motion_component.data
 
+
 func _on_enter() -> void:
+	var horizontal_speed: float = MotionComponent.get_horizontal_speed(character_body.velocity)
+	_max_fall_horizontal_speed = max(horizontal_speed, motion.base_speed)
+
 	animation_player.play("RESET")
 	
+
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
-	assert(camera_manager != null)
 
-	var input_direction: Vector3 = InputComponent.get_motion_input_direction().normalized()
-	var direction: Vector3 = camera_manager.transform.basis * input_direction
-
-	MotionComponent.move_character_horizontaly(
+	var direction: Vector3 = InputComponent.get_relative_motion_input_direction(
+		CameraSystem.active_controller
+	)
+	
+	AnimationComponent.rotate_horizontaly(
 		character_body,
 		direction,
-		motion.max_speed,
-		motion.acceleration * delta
+		delta
+	)
+
+	MotionComponent.move_character_horizontaly_with_momentum(
+		character_body,
+		direction,
+		motion.base_speed,
+		_max_fall_horizontal_speed,
+		motion.air_acceleration * delta
 	)
 
 	MotionComponent.apply_gravity(
-		motion.gravity * delta,
 		character_body,
-		motion.max_fall_velocity
+		motion.gravity * delta,
+		motion.fall_speed
 	)
 
 	character_body.move_and_slide()

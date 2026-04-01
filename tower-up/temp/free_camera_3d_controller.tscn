@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b2knsmyh2hucs" path="res://systems/camera/camera_3d_controller.gd" id="1_8p2nb"]
 [ext_resource type="Script" uid="uid://d3ekbefsf8y5p" path="res://systems/states/state_machine.gd" id="2_se2h8"]
-[ext_resource type="Script" uid="uid://clirwxejqakb1" path="res://systems/camera/states/free_rotation_camera_state.gd" id="3_cofaj"]
 [ext_resource type="Script" uid="uid://dhhbv3his8cq7" path="res://systems/components/input/input_component.gd" id="4_ekbhk"]
 [ext_resource type="Script" uid="uid://uv2reoa7h50" path="res://systems/components/input/input_data.gd" id="5_ui2b4"]
 
@@ -19,14 +18,8 @@ transform = Transform3D(1, 0, 0, 0, 0.9201635, 0.3915343, 0, -0.3915343, 0.92016
 
 [node name="StateMachine" type="Node" parent="." unique_id=131885147 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_se2h8")
-initial_state = NodePath("FreeRotationCameraState")
+initial_state = NodePath("")
 metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
-
-[node name="FreeRotationCameraState" type="Node" parent="StateMachine" unique_id=2045614739 node_paths=PackedStringArray("input_component", "camera_controller")]
-script = ExtResource("3_cofaj")
-input_component = NodePath("../../InputComponent")
-camera_controller = NodePath("../..")
-metadata/_custom_type_script = "uid://clirwxejqakb1"
 
 [node name="InputComponent" type="Node" parent="." unique_id=948888411]
 script = ExtResource("4_ekbhk")

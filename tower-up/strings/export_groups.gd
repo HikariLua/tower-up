@@ -3,10 +3,11 @@ class_name ExportGroups
 extends RefCounted
 
 
+const ANIMATION: StringName = "Animation"
+const ATRIBUTES: StringName = "Atributes"
 const BODIES: StringName = "Bodies"
+const BULLETS: StringName = "Bullets"
 const COMPONENTS: StringName = "Components"
 const NODES: StringName = "Nodes"
-const STATES: StringName = "States"
-const ATRIBUTES: StringName = "Atributes"
 const PATTERNS: StringName = "Patterns"
-const BULLETS: StringName = "Bullets"
+const STATES: StringName = "States"

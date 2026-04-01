@@ -33,8 +33,10 @@ func check_transition() -> DecisionResult:
 
 	assert(_condition_callable.is_valid())
 	var decision_result: DecisionResult = _condition_callable.call()
+
+	assert(decision_result is DecisionResult)
 	
-	return decision_result
+	return decision_result as DecisionResult
 
 
 ## Changes the transition's priority.

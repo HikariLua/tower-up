@@ -1,8 +1,9 @@
-class_name PlayerStateIdle
+class_name PlayerStateSprint
 extends State
 
-const IDLE_ANIMATION: StringName = "RESET"
 
+@export_group(ExportGroups.ATRIBUTES)
+@export var sprint_speed_multiplier: float = 1.5
 
 @export_group(ExportGroups.BODIES)
 @export var character_body: CharacterBody3D
@@ -11,9 +12,9 @@ const IDLE_ANIMATION: StringName = "RESET"
 @export var motion_component: MotionComponent
 
 @export_group(ExportGroups.STATES)
+@export var idle_state: PlayerStateIdle
 @export var run_state: PlayerStateRun
-@export var sprint_state: PlayerStateSprint
-@export var crouch_state: PlayerStateCrouch
+@export var crouch_slide_state: PlayerStateCrouchSlide
 @export var jump_state: PlayerStateJump
 @export var fall_state: PlayerStateFall
 
@@ -24,19 +25,19 @@ var motion: MotionData
 
 
 func _ready() -> void:
-	assert(run_state != null)
+	assert(idle_state != null)
+	local_function_transitions.create_and_add(idle_state, _to_idle)
+
+	assert(run_state != null )
 	local_function_transitions.create_and_add(run_state, _to_run)
 
-	assert(sprint_state != null)
-	local_function_transitions.create_and_add(sprint_state, _to_sprint)
+	assert(crouch_slide_state != null)
+	local_function_transitions.create_and_add(crouch_slide_state, _to_crouch_slide)
 
-	assert(crouch_state != null)
-	local_function_transitions.create_and_add(crouch_state, _to_crouch)
-
-	assert(jump_state != null)
+	assert(jump_state != null )
 	local_function_transitions.create_and_add(jump_state, _to_jump)
 
-	assert(fall_state != null)
+	assert(fall_state != null )
 	local_function_transitions.create_and_add(fall_state, _to_fall)
 	
 	assert(character_body != null)
@@ -48,18 +49,28 @@ func _ready() -> void:
 
 
 func _on_enter() -> void:
-	animation_player.play("RESET")
+	animation_player.play("running")
 
 
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
 	assert(motion != null)
 
+	var direction: Vector3 = InputComponent.get_relative_motion_input_direction(
+		CameraSystem.active_controller
+	)
+
+	AnimationComponent.rotate_horizontaly(
+		character_body,
+		direction,
+		delta
+	)
+
 	MotionComponent.move_character_horizontaly(
 		character_body,
-		Vector3.ZERO,
-		0,
-		motion.friction * delta
+		direction,
+		motion.base_speed * sprint_speed_multiplier,
+		motion.acceleration * delta
 	)
 
 	MotionComponent.apply_gravity(
@@ -69,31 +80,34 @@ func _state_physics_process(delta: float) -> void:
 	)
 
 	character_body.move_and_slide()
+	# MotionComponent.character_push_rigidbody(
+	# 	character_body,
+	# 	delta,
+	# 	motion.push_force
+	# )
+
+
+func _to_idle() -> DecisionResult:
+	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
+	return DecisionResult.create(input_direction == Vector3.ZERO)
 
 
 func _to_run() -> DecisionResult:
-	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
-	return DecisionResult.create(input_direction != Vector3.ZERO)
-
-
-func _to_sprint() -> DecisionResult:
-	assert(InputMap.has_action(InputActions.SPRINT))
 	var sprint_input: bool = Input.is_action_pressed(InputActions.SPRINT)
-	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
-	return DecisionResult.create(input_direction != Vector3.ZERO and sprint_input)
+	return DecisionResult.create(not sprint_input)
+	
 
-
-func _to_crouch() -> DecisionResult:
+func _to_crouch_slide() -> DecisionResult:
 	assert(InputMap.has_action(InputActions.CROUCH))
 	var crouch_input: bool = Input.is_action_pressed(InputActions.CROUCH)
 	return DecisionResult.create(crouch_input)
-	
+
 
 func _to_jump() -> DecisionResult:
-	assert(InputMap.has_action(InputActions.JUMP))
-	var jump_button_pressed: bool = Input.is_action_just_pressed(InputActions.JUMP)
-	return DecisionResult.create(jump_button_pressed)
+	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
+	return DecisionResult.create(jump_button)
 
 
-func _to_fall() -> DecisionResult:
-	return DecisionResult.create(character_body.velocity.y < 0)	
+func _to_fall() ->DecisionResult:
+	var is_falling: bool = character_body.velocity.y < 0
+	return DecisionResult.create(is_falling)

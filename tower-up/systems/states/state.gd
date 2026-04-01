@@ -16,11 +16,6 @@ var local_signal_transitions: SignalStateTransitionMap = SignalStateTransitionMa
 
 
 ## Called every time in the moment the state transitioned in.
-## Animation player 
-@export var animation_player: AnimationPlayer
-
-
-## Called every time in the moment the state transitioned in.
 func _on_enter() -> void:
 	pass
 
