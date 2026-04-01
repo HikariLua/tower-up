@@ -6,13 +6,18 @@ extends Component
 var data: InputData
 
 
+static var default_direction_mode: InputData.DirectionMode = (
+	InputData.DirectionMode.THREE_DIMENSIONS
+)
+
+
 func _enter_tree() -> void:
 	assert(data_template != null)
 	data = initialize_data(data_template)
 
 
 static func get_motion_input_direction(
-	mode: InputData.DirectionMode = InputData.DirectionMode.THREE_DIMENSIONS,
+	mode: InputData.DirectionMode = default_direction_mode,
 ) -> Vector3:
 	assert(InputMap.has_action(InputActions.MOVE_LEFT))
 	assert(InputMap.has_action(InputActions.MOVE_RIGHT))
@@ -45,9 +50,27 @@ static func get_motion_input_direction(
 	return vector
 
 
+static func get_relative_motion_input_direction(
+	camera_controller: Camera3DController,
+	mode: InputData.DirectionMode = default_direction_mode,
+) -> Vector3:
+	var input_direction: Vector3 = get_motion_input_direction(mode).normalized()
+
+	var relative_direction: Vector3 = camera_controller.transform.basis * input_direction
+
+	match mode:
+		InputData.DirectionMode.TWO_DIMENSIONS:
+			relative_direction.z = 0
+
+		InputData.DirectionMode.THREE_DIMENSIONS:
+			relative_direction.y = 0
+
+	return relative_direction.normalized()
+
+
 static func get_motion_input_direction_with_bias(
 	bias: Vector3,
-	mode: InputData.DirectionMode = InputData.DirectionMode.THREE_DIMENSIONS,
+	mode: InputData.DirectionMode = default_direction_mode,
 ) -> Vector3:
 	assert(InputMap.has_action(InputActions.MOVE_LEFT))
 	assert(InputMap.has_action(InputActions.MOVE_RIGHT))

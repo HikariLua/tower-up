@@ -1,6 +1,9 @@
-class_name PlayerStateRun
+class_name PlayerStateCrouch
 extends State
 
+
+@export_group(ExportGroups.ATRIBUTES)
+@export var crouch_speed_multiplier: float = 0.2
 
 @export_group(ExportGroups.BODIES)
 @export var character_body: CharacterBody3D
@@ -10,10 +13,9 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-@export var sprint_state: PlayerStateSprint
-@export var crouch_slide_state: PlayerStateCrouchSlide
-@export var jump_state: PlayerStateJump
+@export var roll_state: PlayerStateRoll
 @export var fall_state: PlayerStateFall
+@export var backflip_state: PlayerStateBackflip
 
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
@@ -25,17 +27,14 @@ func _ready() -> void:
 	assert(idle_state != null)
 	local_function_transitions.create_and_add(idle_state, _to_idle)
 
-	assert(sprint_state != null)
-	local_function_transitions.create_and_add(sprint_state, _to_sprint)
+	assert(roll_state != null)
+	local_function_transitions.create_and_add(roll_state, _to_roll)
 
-	assert(crouch_slide_state != null)
-	local_function_transitions.create_and_add(crouch_slide_state, _to_crouch_slide)
-
-	assert(jump_state != null )
-	local_function_transitions.create_and_add(jump_state, _to_jump)
-
-	assert(fall_state != null )
+	assert(fall_state != null)
 	local_function_transitions.create_and_add(fall_state, _to_fall)
+
+	assert(fall_state != null)
+	local_function_transitions.create_and_add(backflip_state, _to_backflip)
 	
 	assert(character_body != null)
 	assert(animation_player != null)
@@ -46,7 +45,7 @@ func _ready() -> void:
 
 
 func _on_enter() -> void:
-	animation_player.play("running")
+	animation_player.play("crouch")
 
 
 func _state_physics_process(delta: float) -> void:
@@ -66,7 +65,7 @@ func _state_physics_process(delta: float) -> void:
 	MotionComponent.move_character_horizontaly(
 		character_body,
 		direction,
-		motion.base_speed,
+		motion.base_speed * crouch_speed_multiplier,
 		motion.acceleration * delta
 	)
 
@@ -77,36 +76,25 @@ func _state_physics_process(delta: float) -> void:
 	)
 
 	character_body.move_and_slide()
-	# MotionComponent.character_push_rigidbody(
-	# 	character_body,
-	# 	delta,
-	# 	motion.push_force
-	# )
 
 
 func _to_idle() -> DecisionResult:
-	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
-	return DecisionResult.create(input_direction == Vector3.ZERO)
-
-
-func _to_sprint() -> DecisionResult:
-	assert(InputMap.has_action(InputActions.SPRINT))
-	var sprint_input: bool = Input.is_action_pressed(InputActions.SPRINT)
-	return DecisionResult.create(sprint_input)
-	
-
-func _to_crouch_slide() -> DecisionResult:
 	assert(InputMap.has_action(InputActions.CROUCH))
 	var crouch_input: bool = Input.is_action_pressed(InputActions.CROUCH)
-	return DecisionResult.create(crouch_input)
+	return DecisionResult.create(not crouch_input)
 
 
-func _to_jump() -> DecisionResult:
+func _to_roll() -> DecisionResult:
+	assert(InputMap.has_action(InputActions.SPRINT))
+	var sprint_input: bool = Input.is_action_just_pressed(InputActions.SPRINT)
+	return DecisionResult.create(sprint_input)
+
+
+func _to_backflip() -> DecisionResult:
 	assert(InputMap.has_action(InputActions.JUMP))
-	var jump_button: bool = Input.is_action_just_pressed(InputActions.JUMP)
-	return DecisionResult.create(jump_button)
+	var jump_input: bool = Input.is_action_pressed(InputActions.JUMP)
+	return DecisionResult.create(jump_input)
+	
 
-
-func _to_fall() ->DecisionResult:
-	var is_falling: bool = character_body.velocity.y < 0
-	return DecisionResult.create(is_falling)
+func _to_fall() -> DecisionResult:
+	return DecisionResult.create(character_body.velocity.y < 0)	
