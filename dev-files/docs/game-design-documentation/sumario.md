@@ -26,14 +26,14 @@
          1. Tela Principal
          2. Tela de Opções
          3. Tela de Recordes 
-   13. [replay-n-saves|Replay e Saves]
+   13. [[replay-n-save|Replay e Saves]]
    14. Cheats e "Easter Eggs"
 
 15. História, Cenário e Personagens
-   16. [historia-e-narrativa|História e Narrativa]
+   16. [[historia-e-narrativa|História e Narrativa]]
       1. História de Fundo
       2. Progressão no Jogo
-   17. [personagens|Personagens]
+   17. [[personagens|Personagens]]
       1. Personagem Principal
          1. Background
          2. Personalidade

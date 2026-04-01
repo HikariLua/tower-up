@@ -7,3 +7,7 @@ São as configurações do jogo.
 # Placa de Recordes (*Leaderboard*)
 Apresentação as estatísticas do jogador
 
+# End game
+
+# Creditos
+
