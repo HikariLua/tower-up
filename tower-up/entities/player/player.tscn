@@ -352,7 +352,7 @@ idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Crouch" type="Node" parent="StateMachine" unique_id=2100530505 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "fall_state", "backflip_state", "animation_player")]
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=2100530505 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "fall_state", "backflip_state", "animation_player", "raycast")]
 script = ExtResource("9_bectd")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
@@ -361,6 +361,7 @@ roll_state = NodePath("../Roll")
 fall_state = NodePath("../Fall")
 backflip_state = NodePath("../Backflip")
 animation_player = NodePath("../../AnimationPlayer")
+raycast = NodePath("../../TopRayCast3D")
 
 [node name="CrouchSlide" type="Node" parent="StateMachine" unique_id=2065437555 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "crouch_state", "fall_state", "z_jump_state", "animation_player")]
 script = ExtResource("10_wvtmh")
@@ -399,3 +400,6 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=382416899]
 libraries/ = SubResource("AnimationLibrary_bectd")
 autoplay = &"running"
+
+[node name="TopRayCast3D" type="RayCast3D" parent="." unique_id=526845310]
+target_position = Vector3(0, 1, 0)
