@@ -20,6 +20,9 @@ extends State
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
 
+@export_group("RayCast")
+@export var raycast: RayCast3D
+
 var motion: MotionData
 
 
@@ -40,6 +43,7 @@ func _ready() -> void:
 	assert(animation_player != null)
 	assert(motion_component != null)
 	assert(motion_component.data != null)
+	assert(raycast != null)
 
 	motion = motion_component.data
 
@@ -81,7 +85,8 @@ func _state_physics_process(delta: float) -> void:
 func _to_idle() -> DecisionResult:
 	assert(InputMap.has_action(InputActions.CROUCH))
 	var crouch_input: bool = Input.is_action_pressed(InputActions.CROUCH)
-	return DecisionResult.create(not crouch_input)
+	var has_object_above: bool = raycast.is_colliding()
+	return DecisionResult.create(not crouch_input && not has_object_above)
 
 
 func _to_roll() -> DecisionResult:
