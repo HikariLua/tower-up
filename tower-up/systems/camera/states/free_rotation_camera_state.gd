@@ -14,14 +14,15 @@ func _state_input(event: InputEvent) -> void:
 
 	var mouse_motion: InputEventMouseMotion = event as InputEventMouseMotion
 
-	var direction: int = -1 if SettingsAutoload.invert_camera_axis else 1
+	var direction: int = 1 if SettingsAutoload.invert_camera_axis else -1
 	var sensitivity: float = SettingsAutoload.camera_mouse_sensitivity / 100.0
 
 	var x_rotation: float = mouse_motion.relative.y * sensitivity * direction
 	var y_rotation: float = mouse_motion.relative.x * sensitivity * direction
 
-	camera_controller.rotation.x += deg_to_rad(x_rotation * -1)
-	camera_controller.rotation.y += deg_to_rad(y_rotation * -1)
+	camera_controller.rotation.x += deg_to_rad(x_rotation)
+	camera_controller.rotation.y += deg_to_rad(y_rotation)
+	print(sensitivity)
 
 
 func _on_enter() -> void:
@@ -36,6 +37,7 @@ func _state_physics_process(delta: float) -> void:
 
 	var direction: int = -1 if SettingsAutoload.invert_camera_axis else 1
 	var sensitivity: int = SettingsAutoload.camera_sensitivity
+
 
 	var y_rotation: float = input_direction.x * sensitivity * delta * direction
 	var x_rotation: float = input_direction.y * sensitivity * delta * direction

@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb/bomb.tscn" id="7_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]
 [ext_resource type="Script" uid="uid://cld2q7c470bhu" path="res://entities/world/generate_bricks.gd" id="9_rxgam"]
-[ext_resource type="Script" uid="uid://tuojp4hppobk" path="res://systems/hud.gd" id="10_e7bg0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -71,9 +70,6 @@ size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e7bg0"]
 size = Vector3(20, 10.6, 20)
-
-[sub_resource type="LabelSettings" id="LabelSettings_e7bg0"]
-font_size = 32
 
 [node name="World" type="Node3D" unique_id=1152093587]
 script = ExtResource("1_jgvb4")
@@ -163,45 +159,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 pixel_size = 0.01
 text = "Space para pular"
-
-[node name="HUD" type="CanvasLayer" parent="System" unique_id=2052395160 node_paths=PackedStringArray("player", "score_label")]
-script = ExtResource("10_e7bg0")
-player = NodePath("../../Player")
-score_label = NodePath("Control/PanelContainer/Label")
-
-[node name="Control" type="Control" parent="System/HUD" unique_id=1013840039]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 412.0
-offset_right = 64.0
-offset_bottom = 476.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-
-[node name="PanelContainer" type="PanelContainer" parent="System/HUD/Control" unique_id=1479531772]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -40.0
-offset_right = 64.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="System/HUD/Control/PanelContainer" unique_id=2058925879]
-layout_mode = 2
-text = "Score"
-label_settings = SubResource("LabelSettings_e7bg0")
-horizontal_alignment = 1
 
 [editable path="Player"]
 [editable path="Camera3DController"]

@@ -39,7 +39,7 @@ const SFX_VOLUME_KEY: StringName = "sfx_volume"
 
 const CAMERA_SENSITIVITY_KEY: StringName = "camera_sensitivity"
 const MOUSE_SENSITIVITY_KEY: StringName = "mouse_sensitivity"
-const INVERT_CAMERA_AXIS_KEY: StringName = "mouse_sensitivity"
+const INVERT_CAMERA_AXIS_KEY: StringName = "invert_camera_axis"
 
 const RESOLUTION_WIDTH_KEY: StringName = "resolution_width"
 const RESOLUTION_HEIGHT_KEY: StringName = "resolution_height"
