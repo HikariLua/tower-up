@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://byefb13vi6nrr" path="res://systems/spawn/curve_based_spawner/curve_based_spawner.gd" id="6_0v2c8"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_tqplk"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="7_0v2c8"]
-[ext_resource type="Script" uid="uid://bjdotvjxvjkup" path="res://systems/spawn/point_based_spawner.gd" id="8_bkpaq"]
+[ext_resource type="Script" uid="uid://bjdotvjxvjkup" path="res://systems/spawn/point_based_spawner/point_based_spawner.gd" id="8_bkpaq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
