@@ -1,15 +1,14 @@
-@tool
-class_name EditorCurveBasedSpawner
+class_name EditorPointBasedSpawner
 extends RefCounted
 
 
-var _spawner: CurveBasedSpawner = null
+var _spawner: PointBasedSpawner = null
 
 var _preview_update_scheduled: bool = false
 var _preview_container: Node3D = null
 
 
-func _init(spawner: CurveBasedSpawner) -> void:
+func _init(spawner: PointBasedSpawner) -> void:
 	_spawner = spawner
 
 
@@ -75,10 +74,9 @@ func _update_editor_preview() -> void:
 	for child: Node in _preview_container.get_children():
 		child.queue_free()
 
-	if _spawner.node_scene == null or _spawner.spawn_count <= 0:
+	if _spawner.node_scene == null:
 		return
 
-	_spawner.path_follow.progress_ratio = 0
 	_spawner.spawn_nodes.call_deferred(_preview_container)
 
 	_check_warning()
@@ -99,6 +97,7 @@ func _check_warning() -> void:
 			"%s spawner rotation is different than 0. preview might be misleading" %
 			_spawner.name
 		)
+
 
 func _on_curve_changed() -> void:
 	request_preview_update()
