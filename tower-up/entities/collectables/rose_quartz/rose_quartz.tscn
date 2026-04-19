@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bsekhlm0bjh5r"]
+
+[ext_resource type="Script" uid="uid://bl5rqu7hi63lu" path="res://entities/collectables/socre_collectable.gd" id="1_hjtvw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u7fnx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjtvw"]
+transparency = 1
+albedo_color = Color(0.7969998, 0.42000002, 1, 0.73333335)
+emission_enabled = true
+emission = Color(0.79607844, 0.41960785, 1, 1)
+emission_energy_multiplier = 1.55
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u0akx"]
+radius = 0.7
+
+[node name="RoseQuartz" type="Area3D" unique_id=1693566820]
+script = ExtResource("1_hjtvw")
+score_value = 100
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1909887244]
+mesh = SubResource("SphereMesh_u7fnx")
+surface_material_override/0 = SubResource("StandardMaterial3D_hjtvw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1848767696]
+shape = SubResource("SphereShape3D_u0akx")

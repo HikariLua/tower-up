@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://byefb13vi6nrr" path="res://systems/spawn/curve_based_spawner/curve_based_spawner.gd" id="6_0v2c8"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_tqplk"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="7_0v2c8"]
+[ext_resource type="PackedScene" uid="uid://bsekhlm0bjh5r" path="res://entities/collectables/rose_quartz/rose_quartz.tscn" id="7_x13ef"]
 [ext_resource type="Script" uid="uid://bjdotvjxvjkup" path="res://systems/spawn/point_based_spawner/point_based_spawner.gd" id="8_bkpaq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
@@ -70,7 +71,7 @@ size = Vector3(45, 1, 45)
 
 [sub_resource type="Curve3D" id="Curve3D_bkpaq"]
 _data = {
-"points": PackedVector3Array(8.692101, 0, -6.5190773, -8.692101, 0, 6.5190773, 15.127493, -5.4576206, 12.98389, 0.3817215, -1.9073486e-05, 13.853638, -0.3817215, 1.9073486e-05, -13.853638, -11.626875, -1.7508917, 2.4565907, 0, 0, 0, 0, 0, 0, -2.0094686, 0, -13.403632, -1.4883785, 5.6266785e-05, 6.037696, 1.4883785, -5.6266785e-05, -6.037696, 31.742886, 6.16846, -15.005281, 2.3741207, 2.483097, -10.507849, -2.3741207, -2.483097, 10.507849, -14.166271, 11.143868, -16.016645, -2.8290377, 3.4768429, -7.7176385, 2.8290377, -3.4768429, 7.7176385, 13.982499, 15.98923, 3.0179954, 0, 0, 0, 0, 0, 0, 0.47566223, 15.749753, 11.318582),
+"points": PackedVector3Array(8.692101, 0, -6.5190773, -8.692101, 0, 6.5190773, 15.127493, -5.4576206, 12.98389, 0.3817215, -1.9073486e-05, 13.853638, -0.3817215, 1.9073486e-05, -13.853638, -11.626875, -5.7309895, 2.4565907, 0, 0, 0, 0, 0, 0, -2.0094686, -5.758439, -13.403632, -1.4883785, 5.6266785e-05, 6.037696, 1.4883785, -5.6266785e-05, -6.037696, 31.742886, -5.1790524, -15.005281, 2.3741207, 2.483097, -10.507849, -2.3741207, -2.483097, 10.507849, -14.16627, -5.3693, -16.016645, -2.8290377, 3.4768429, -7.7176385, 2.8290377, -3.4768429, 7.7176385, 13.982499, -4.4193544, 3.0179954, 0, 0, 0, 0, 0, 0, 0.47566223, -2.1283865, 12.640374),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
@@ -154,7 +155,7 @@ size = Vector3(46, 43, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.274091, 6.838069, 0)
 curve = SubResource("Curve3D_bkpaq")
 script = ExtResource("6_0v2c8")
-node_scene = ExtResource("2_x347r")
+node_scene = ExtResource("7_x13ef")
 spawn_count = 55
 metadata/_custom_type_script = "uid://byefb13vi6nrr"
 
