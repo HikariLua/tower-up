@@ -15,6 +15,9 @@ emission_energy_multiplier = 1.55
 radius = 0.7
 
 [node name="RoseQuartz" type="Area3D" unique_id=1693566820]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 script = ExtResource("1_hjtvw")
 score_value = 100
 

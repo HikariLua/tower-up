@@ -194,6 +194,18 @@ pseudolocalization/double_vowels=true
 pseudolocalization/prefix="[[_"
 pseudolocalization/suffix="_]]"
 
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="player_body"
+3d_physics/layer_3="player_hurtbox"
+3d_physics/layer_4="player_hitbox"
+3d_physics/layer_5="player_interactbox"
+3d_physics/layer_6="enemy_body"
+3d_physics/layer_7="enemy_hurtbox"
+3d_physics/layer_8="enemy_hitbox"
+3d_physics/layer_9="collectable"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

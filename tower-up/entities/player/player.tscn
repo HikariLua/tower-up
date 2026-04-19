@@ -272,6 +272,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=866541521]
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=936769468]
 mesh = SubResource("CapsuleMesh_sfv1e")
