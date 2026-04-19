@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c2vmx0363njng"]
+
+[ext_resource type="Script" uid="uid://b2xfa5uetuc1i" path="res://systems/socre/score_system.gd" id="1_eiyam"]
+
+[node name="ScoreSystemAutoload" type="Node" unique_id=31743573]
+script = ExtResource("1_eiyam")
+metadata/_custom_type_script = "uid://b2xfa5uetuc1i"

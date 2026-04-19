@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dqbhp0ddd8066"
 UISystemAutoload="*uid://dhsqoq6gwk0f5"
 SettingsAutoload="*uid://evnkpqy4bbx4"
 CameraSystem="*uid://dvqgnb742rp1r"
+ScoreAutoload="*uid://c2vmx0363njng"
 
 [debug]
 
