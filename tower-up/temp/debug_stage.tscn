@@ -164,11 +164,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.274091, 6.838069, 0)
 curve = SubResource("Curve3D_bkpaq")
 script = ExtResource("6_0v2c8")
 node_scene = ExtResource("7_x13ef")
-spawn_count = 55
+spawn_count = 25
 metadata/_custom_type_script = "uid://byefb13vi6nrr"
 
 [node name="PointBasedSpawner" type="Path3D" parent="." unique_id=1988547631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.494871, 10.604717, 0)
+visible = false
 curve = SubResource("Curve3D_x13ef")
 script = ExtResource("8_bkpaq")
 node_scene = ExtResource("9_x13ef")
@@ -176,6 +177,7 @@ metadata/_custom_type_script = "uid://bjdotvjxvjkup"
 
 [node name="PointBasedSpawner2" type="Path3D" parent="." unique_id=2068228984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.494871, 10.604717, 0)
+visible = false
 curve = SubResource("Curve3D_04h8m")
 script = ExtResource("8_bkpaq")
 node_scene = ExtResource("10_a3nj3")

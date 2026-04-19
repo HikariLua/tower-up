@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://y3mbv3mysjr6"]
+
+[ext_resource type="Script" uid="uid://bxf4b2gtssuay" path="res://systems/leaderboard/leaderboard_system.gd" id="1_tg44y"]
+
+[node name="LeaderboardSystemAutoload" type="Node" unique_id=1304183967]
+script = ExtResource("1_tg44y")
+metadata/_custom_type_script = "uid://bxf4b2gtssuay"
