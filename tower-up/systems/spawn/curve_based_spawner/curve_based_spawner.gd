@@ -14,6 +14,7 @@ var _editor_preview: EditorCurveBasedSpawner = null
 
 func _ready() -> void:
 	path_follow = PathFollow3D.new()
+	path_follow.loop = false
 	self.add_child(path_follow)
 
 	if Engine.is_editor_hint():
