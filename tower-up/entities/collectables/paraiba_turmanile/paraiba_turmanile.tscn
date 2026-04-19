@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://5ursmmw781k0"]
+
+[ext_resource type="Script" uid="uid://bl5rqu7hi63lu" path="res://entities/collectables/socre_collectable.gd" id="1_2y7e8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_phvx8"]
+size = Vector3(0.95, 1.245, 0.33)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jaasl"]
+transparency = 1
+albedo_color = Color(0.36078432, 0.92941177, 0.9019608, 0.73333335)
+emission_enabled = true
+emission = Color(0.36078432, 0.92941177, 0.9019608, 1)
+emission_energy_multiplier = 1.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hbo5b"]
+size = Vector3(1.0935059, 1.4804688, 0.5126953)
+
+[node name="ParaibaTurmanile" type="Area3D" unique_id=1693566820]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_2y7e8")
+score_value = 10000
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1909887244]
+mesh = SubResource("BoxMesh_phvx8")
+surface_material_override/0 = SubResource("StandardMaterial3D_jaasl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1848767696]
+shape = SubResource("BoxShape3D_hbo5b")
