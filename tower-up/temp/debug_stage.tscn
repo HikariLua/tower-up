@@ -6,9 +6,10 @@
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_181qj"]
 [ext_resource type="Script" uid="uid://byefb13vi6nrr" path="res://systems/spawn/curve_based_spawner/curve_based_spawner.gd" id="6_0v2c8"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_tqplk"]
-[ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="7_0v2c8"]
 [ext_resource type="PackedScene" uid="uid://bsekhlm0bjh5r" path="res://entities/collectables/rose_quartz/rose_quartz.tscn" id="7_x13ef"]
 [ext_resource type="Script" uid="uid://bjdotvjxvjkup" path="res://systems/spawn/point_based_spawner/point_based_spawner.gd" id="8_bkpaq"]
+[ext_resource type="PackedScene" uid="uid://5ursmmw781k0" path="res://entities/collectables/paraiba_turmanile/paraiba_turmanile.tscn" id="9_x13ef"]
+[ext_resource type="PackedScene" uid="uid://dj4hm5ospaopn" path="res://entities/collectables/garnet/garnet.tscn" id="10_a3nj3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -78,7 +79,14 @@ point_count = 7
 
 [sub_resource type="Curve3D" id="Curve3D_x13ef"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.726987, 4.783867, 9.683196, 0, 0, 0, 0, 0, 0, -2.0096493, 11.568499, 3.257278, 0, 0, 0, 0, 0, 0, 3.0146217, 14.867449, -4.335878, 0, 0, 0, 0, 0, 0, 6.7630177, 17.543955, 4.37576, 0, 0, 0, 0, 0, 0, 19.490084, 15.737638, 13.395302, 0, 0, 0, 0, 0, 0, 13.245127, 3.092989, 18.219692),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -9.1457615, -16.767227, 0, 0, 0, 0, 0, 0, 2.726987, -4.3618946, -7.084031, 0, 0, 0, 0, 0, 0, -2.0096493, 2.4227371, -13.509949, 0, 0, 0, 0, 0, 0, 3.0146217, 5.7216873, -21.103106, 0, 0, 0, 0, 0, 0, 6.7630177, 8.398193, -12.391467, 0, 0, 0, 0, 0, 0, 19.490084, 6.591877, -3.3719254, 0, 0, 0, 0, 0, 0, 13.245127, -6.0527725, 1.452465),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve3D" id="Curve3D_04h8m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -5.335026, 0, 0, 0, 0, 0, 0, 0, 7.593636, -0.5511589, 9.683196, 0, 0, 0, 0, 0, 0, -2.0096493, -9.004608, 3.257278, 0, 0, 0, 0, 0, 0, 3.0146217, -3.4320602, -4.335878, 0, 0, 0, 0, 0, 0, 6.7630177, 0.69101906, 4.37576, 0, 0, 0, 0, 0, 0, 19.490084, 2.6713676, 13.395302, 0, 0, 0, 0, 0, 0, 25.82651, -2.2420368, 18.219692),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
@@ -161,10 +169,16 @@ metadata/_custom_type_script = "uid://byefb13vi6nrr"
 
 [node name="PointBasedSpawner" type="Path3D" parent="." unique_id=1988547631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.494871, 10.604717, 0)
-visible = false
 curve = SubResource("Curve3D_x13ef")
 script = ExtResource("8_bkpaq")
-node_scene = ExtResource("7_0v2c8")
+node_scene = ExtResource("9_x13ef")
+metadata/_custom_type_script = "uid://bjdotvjxvjkup"
+
+[node name="PointBasedSpawner2" type="Path3D" parent="." unique_id=2068228984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.494871, 10.604717, 0)
+curve = SubResource("Curve3D_04h8m")
+script = ExtResource("8_bkpaq")
+node_scene = ExtResource("10_a3nj3")
 metadata/_custom_type_script = "uid://bjdotvjxvjkup"
 
 [editable path="Camera3DController"]
