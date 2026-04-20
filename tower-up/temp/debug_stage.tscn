@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bjdotvjxvjkup" path="res://systems/spawn/point_based_spawner/point_based_spawner.gd" id="8_bkpaq"]
 [ext_resource type="PackedScene" uid="uid://5ursmmw781k0" path="res://entities/collectables/paraiba_turmanile/paraiba_turmanile.tscn" id="9_x13ef"]
 [ext_resource type="PackedScene" uid="uid://dj4hm5ospaopn" path="res://entities/collectables/garnet/garnet.tscn" id="10_a3nj3"]
+[ext_resource type="PackedScene" uid="uid://scho8c1pmy88" path="res://entities/world/falling_platform/falling_platform.tscn" id="11_04h8m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -70,6 +71,15 @@ albedo_color = Color(0.12880298, 0.30374524, 0.3298133, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_pmxsu"]
 size = Vector3(45, 1, 45)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_04h8m"]
+size = Vector3(45, 1, 45)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04h8m"]
+albedo_color = Color(0.3191652, 0.36561206, 0.6712859, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_32xxm"]
+size = Vector3(45, 1, 45)
+
 [sub_resource type="Curve3D" id="Curve3D_bkpaq"]
 _data = {
 "points": PackedVector3Array(8.692101, 0, -6.5190773, -8.692101, 0, 6.5190773, 15.127493, -5.4576206, 12.98389, 0.3817215, -1.9073486e-05, 13.853638, -0.3817215, 1.9073486e-05, -13.853638, -11.626875, -5.7309895, 2.4565907, 0, 0, 0, 0, 0, 0, -2.0094686, -5.758439, -13.403632, -1.4883785, 5.6266785e-05, 6.037696, 1.4883785, -5.6266785e-05, -6.037696, 31.742886, -5.1790524, -15.005281, 2.3741207, 2.483097, -10.507849, -2.3741207, -2.483097, 10.507849, -14.16627, -5.3693, -16.016645, -2.8290377, 3.4768429, -7.7176385, 2.8290377, -3.4768429, 7.7176385, 13.982499, -4.4193544, 3.0179954, 0, 0, 0, 0, 0, 0, 0.47566223, -2.1283865, 12.640374),
@@ -122,6 +132,7 @@ player = NodePath("../../../Player")
 libraries/ = SubResource("AnimationLibrary_tqplk")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1961792096]
+visible = false
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1852853505]
@@ -143,9 +154,19 @@ shape = SubResource("BoxShape3D_12ncl")
 material_override = SubResource("StandardMaterial3D_dm68w")
 mesh = SubResource("BoxMesh_pmxsu")
 
+[node name="Ground3" type="AnimatableBody3D" parent="." unique_id=158882628]
+transform = Transform3D(0.115, 0, 0, 0, 0.11496038, -0.0030183748, 0, 0.0030183748, 0.11496038, -6.966091, 2.3045902, 2.3859396)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground3" unique_id=323833581]
+shape = SubResource("BoxShape3D_04h8m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground3" unique_id=1251537577]
+material_override = SubResource("StandardMaterial3D_04h8m")
+mesh = SubResource("BoxMesh_32xxm")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1622362196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.6, -23)
-visible = false
 use_collision = true
 size = Vector3(45, 43, 1)
 
@@ -182,5 +203,8 @@ curve = SubResource("Curve3D_04h8m")
 script = ExtResource("8_bkpaq")
 node_scene = ExtResource("10_a3nj3")
 metadata/_custom_type_script = "uid://bjdotvjxvjkup"
+
+[node name="FallingPlatform" parent="." unique_id=847248391 instance=ExtResource("11_04h8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7283707, 2.501638, -2.5875874)
 
 [editable path="Camera3DController"]

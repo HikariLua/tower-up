@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://scho8c1pmy88"]
+
+[ext_resource type="Script" uid="uid://d3ekbefsf8y5p" path="res://systems/states/state_machine.gd" id="2_lu765"]
+[ext_resource type="Script" uid="uid://brpgwt50qydhq" path="res://entities/world/falling_platform/falling_platform_idle_state.gd" id="3_gtmwp"]
+[ext_resource type="Script" uid="uid://bjgda55tiwaxb" path="res://entities/world/falling_platform/falling_platform_pre_fall_state.gd" id="4_xlkps"]
+[ext_resource type="Script" uid="uid://brvxph7wuygoq" path="res://entities/world/falling_platform/falling_platform_fall_state.gd" id="5_wudq4"]
+[ext_resource type="Script" uid="uid://c3sd7huv0bw75" path="res://entities/world/falling_platform/falling_platform_destroyed_state.gd" id="6_hukhy"]
+[ext_resource type="Script" uid="uid://brwcy4f122ytu" path="res://entities/world/falling_platform/falling_platform_respawn_state.gd" id="7_jnh8k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nbpki"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myd1k"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lkxtw"]
+size = Vector3(3, 0.05, 3)
+
+[sub_resource type="Animation" id="Animation_suojv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:mesh:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0.2, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_4b3ij"]
+resource_name = "destroyed"
+length = 0.2
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(3, 0.2, 3), Vector3(3.1, 0.2, 3.1), Vector3(0, 0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n46yi"]
+resource_name = "pre_fall"
+length = 0.05
+loop_mode = 2
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(0.1, 0, 0), Vector3(-0.1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:mesh:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 0.2, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_xlkps"]
+resource_name = "respawn"
+length = 0.2
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(3.1, 0.2, 3.1), Vector3(3, 0.2, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rwm7k"]
+_data = {
+&"RESET": SubResource("Animation_suojv"),
+&"destroyed": SubResource("Animation_4b3ij"),
+&"pre_fall": SubResource("Animation_n46yi"),
+&"respawn": SubResource("Animation_xlkps")
+}
+
+[node name="FallingPlatform" type="AnimatableBody3D" unique_id=1300660229]
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1131927307]
+mesh = SubResource("BoxMesh_nbpki")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=715290234]
+shape = SubResource("BoxShape3D_myd1k")
+
+[node name="PlatformFallTrigger" type="Area3D" parent="." unique_id=1774973789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlatformFallTrigger" unique_id=1031103213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07615672, 0)
+shape = SubResource("BoxShape3D_lkxtw")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="StateMachine" type="Node" parent="." unique_id=1601255413 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_lu765")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://d3ekbefsf8y5p"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1962917156 node_paths=PackedStringArray("state_machine", "area_trigger", "animation_player", "pre_fall_state")]
+script = ExtResource("3_gtmwp")
+state_machine = NodePath("..")
+area_trigger = NodePath("../../PlatformFallTrigger")
+animation_player = NodePath("../../AnimationPlayer")
+pre_fall_state = NodePath("../PreFall")
+
+[node name="PreFall" type="Node" parent="StateMachine" unique_id=567284257 node_paths=PackedStringArray("state_machine", "animation_player", "pre_fall_timer", "fall_state")]
+script = ExtResource("4_xlkps")
+state_machine = NodePath("..")
+animation_player = NodePath("../../AnimationPlayer")
+pre_fall_timer = NodePath("PreFallTimer")
+pre_fall_duration = 1.0
+fall_state = NodePath("../Fall")
+can_be_transitioned_to = null
+
+[node name="PreFallTimer" type="Timer" parent="StateMachine/PreFall" unique_id=1202569938]
+one_shot = true
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=1683037115 node_paths=PackedStringArray("animation_player", "state_machine", "platform", "fall_timer", "destroyed_state")]
+script = ExtResource("5_wudq4")
+animation_player = NodePath("../../AnimationPlayer")
+state_machine = NodePath("..")
+platform = NodePath("../..")
+fall_timer = NodePath("FallTimer")
+fall_duration = 1.0
+fall_speed = 1.0
+fall_acceleration = 3.0
+destroyed_state = NodePath("../Destroyed")
+
+[node name="FallTimer" type="Timer" parent="StateMachine/Fall" unique_id=2013402074]
+one_shot = true
+
+[node name="Destroyed" type="Node" parent="StateMachine" unique_id=1895279743 node_paths=PackedStringArray("animation_player", "state_machine", "platform_collision", "destroyed_timer", "respawn_state")]
+script = ExtResource("6_hukhy")
+animation_player = NodePath("../../AnimationPlayer")
+state_machine = NodePath("..")
+platform_collision = NodePath("../../CollisionShape3D")
+destroyed_timer = NodePath("DestroyedTimer")
+destroyed_duration = 3.0
+respawn_state = NodePath("../Respawn")
+
+[node name="DestroyedTimer" type="Timer" parent="StateMachine/Destroyed" unique_id=754150405]
+one_shot = true
+
+[node name="Respawn" type="Node" parent="StateMachine" unique_id=1461944761 node_paths=PackedStringArray("animation_player", "state_machine", "platform", "idle_state")]
+script = ExtResource("7_jnh8k")
+animation_player = NodePath("../../AnimationPlayer")
+state_machine = NodePath("..")
+platform = NodePath("../..")
+idle_state = NodePath("../Idle")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1637129035]
+libraries/ = SubResource("AnimationLibrary_rwm7k")
+autoplay = &"RESET"
