@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://v6ki8851gii6" path="res://temp/models/turmaline.glb" id="1_klqaf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcyjn"]
-size = Vector3(0.8, 0.8, 0.2)
+size = Vector3(0.8, 0.8, 0.8)
 
 [node name="TurmalineGem" type="StaticBody3D" unique_id=751919252]
 

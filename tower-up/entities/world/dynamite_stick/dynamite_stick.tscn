@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://k2fossnm73uc"]
+
+[ext_resource type="PackedScene" uid="uid://8i0uebnro1o6" path="res://temp/models/dynamite.glb" id="1_6mmks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjxhl"]
+size = Vector3(0.05, 0.4, 0.05)
+
+[node name="DynamiteStick" type="AnimatableBody3D" unique_id=886506466]
+
+[node name="MeshInstance3D" parent="." unique_id=947666629 instance=ExtResource("1_6mmks")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=181947229]
+shape = SubResource("BoxShape3D_kjxhl")
