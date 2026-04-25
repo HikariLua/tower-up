@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dfv6ft8kqa543"]
+
+[ext_resource type="PackedScene" uid="uid://v6ki8851gii6" path="res://temp/models/turmaline.glb" id="1_klqaf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qcyjn"]
+size = Vector3(0.8, 0.8, 0.2)
+
+[node name="TurmalineGem" type="StaticBody3D" unique_id=751919252]
+
+[node name="turmaline" parent="." unique_id=1941871971 instance=ExtResource("1_klqaf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1604773046]
+shape = SubResource("BoxShape3D_qcyjn")
