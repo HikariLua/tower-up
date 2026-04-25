@@ -7,12 +7,12 @@
 [ext_resource type="Script" uid="uid://ci8smtmvq4i4q" path="res://entities/player/states/player_state_idle.gd" id="6_qiwj3"]
 [ext_resource type="Script" uid="uid://d1j45fa8lixtd" path="res://entities/player/states/player_state_run.gd" id="7_26q78"]
 [ext_resource type="Script" uid="uid://ce6g3kiucdaho" path="res://entities/player/states/player_state_fall.gd" id="7_qiwj3"]
-[ext_resource type="Script" uid="uid://bmgmkowcqj0x6" path="res://entities/player/player_state_backflip.gd" id="8_7thud"]
-[ext_resource type="Script" uid="uid://c8j4rh6mao2ao" path="res://entities/player/player_state_sprint.gd" id="8_26q78"]
-[ext_resource type="Script" uid="uid://cic0jsidjlgl0" path="res://entities/player/player_state_crouch.gd" id="9_bectd"]
-[ext_resource type="Script" uid="uid://wqst5hinv5xl" path="res://entities/player/player_state_crouch_slide.gd" id="10_wvtmh"]
-[ext_resource type="Script" uid="uid://cnuw26tvrji11" path="res://entities/player/player_state_z_jump.gd" id="12_a1qjk"]
-[ext_resource type="Script" uid="uid://bvwavlltfutwp" path="res://entities/player/player_state_roll.gd" id="13_j3ovn"]
+[ext_resource type="Script" uid="uid://bmgmkowcqj0x6" path="res://entities/player/states/player_state_backflip.gd" id="8_7thud"]
+[ext_resource type="Script" uid="uid://c8j4rh6mao2ao" path="res://entities/player/states/player_state_sprint.gd" id="8_26q78"]
+[ext_resource type="Script" uid="uid://cic0jsidjlgl0" path="res://entities/player/states/player_state_crouch.gd" id="9_bectd"]
+[ext_resource type="Script" uid="uid://wqst5hinv5xl" path="res://entities/player/states/player_state_crouch_slide.gd" id="10_wvtmh"]
+[ext_resource type="Script" uid="uid://cnuw26tvrji11" path="res://entities/player/states/player_state_z_jump.gd" id="12_a1qjk"]
+[ext_resource type="Script" uid="uid://bvwavlltfutwp" path="res://entities/player/states/player_state_roll.gd" id="13_j3ovn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 lightmap_size_hint = Vector2i(17, 14)
@@ -277,7 +277,7 @@ collision_layer = 2
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=936769468]
 mesh = SubResource("CapsuleMesh_sfv1e")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=551913197]
+[node name="BoxMeshInstance3D" type="MeshInstance3D" parent="." unique_id=551913197]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.009004712, -1.3624096)
 mesh = SubResource("BoxMesh_a1qjk")
 
@@ -308,7 +308,7 @@ jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "sprint_state", "crouch_slide_state", "jump_state", "fall_state", "animation_player")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=1563185756 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "sprint_state", "crouch_slide_state", "jump_state", "fall_state", "animation_player", "superior", "frontal")]
 script = ExtResource("7_26q78")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
@@ -318,6 +318,8 @@ crouch_slide_state = NodePath("../CrouchSlide")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
+superior = NodePath("../../SuperiorRayCast3D")
+frontal = NodePath("../../FrontalRayCast3D")
 
 [node name="Sprint" type="Node" parent="StateMachine" unique_id=1032085623 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "crouch_slide_state", "jump_state", "fall_state", "animation_player")]
 script = ExtResource("8_26q78")
@@ -353,7 +355,7 @@ idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 animation_player = NodePath("../../AnimationPlayer")
 
-[node name="Crouch" type="Node" parent="StateMachine" unique_id=2100530505 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "fall_state", "backflip_state", "animation_player", "raycast")]
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=2100530505 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "fall_state", "backflip_state", "animation_player", "superior", "frontal")]
 script = ExtResource("9_bectd")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
@@ -362,7 +364,8 @@ roll_state = NodePath("../Roll")
 fall_state = NodePath("../Fall")
 backflip_state = NodePath("../Backflip")
 animation_player = NodePath("../../AnimationPlayer")
-raycast = NodePath("../../TopRayCast3D")
+superior = NodePath("../../SuperiorRayCast3D")
+frontal = NodePath("../../FrontalRayCast3D")
 
 [node name="CrouchSlide" type="Node" parent="StateMachine" unique_id=2065437555 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "roll_state", "crouch_state", "fall_state", "z_jump_state", "animation_player")]
 script = ExtResource("10_wvtmh")
@@ -402,5 +405,9 @@ one_shot = true
 libraries/ = SubResource("AnimationLibrary_bectd")
 autoplay = &"running"
 
-[node name="TopRayCast3D" type="RayCast3D" parent="." unique_id=526845310]
+[node name="SuperiorRayCast3D" type="RayCast3D" parent="." unique_id=526845310]
+visible = false
 target_position = Vector3(0, 1, 0)
+
+[node name="FrontalRayCast3D" type="RayCast3D" parent="." unique_id=591356645]
+target_position = Vector3(0, 0, 0.5)

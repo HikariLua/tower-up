@@ -18,6 +18,11 @@ extends State
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
 
+@export_group(ExportGroups.RAYCASTS)
+@export var superior: RayCast3D
+@export var frontal: RayCast3D
+
+
 var motion: MotionData
 
 
@@ -39,6 +44,8 @@ func _ready() -> void:
 	
 	assert(character_body != null)
 	assert(animation_player != null)
+	assert(frontal != null)
+	assert(superior != null)
 	assert(motion_component != null)
 	assert(motion_component.data != null)
 
@@ -83,6 +90,8 @@ func _state_physics_process(delta: float) -> void:
 	# 	motion.push_force
 	# )
 
+func _to_pushing() -> DecisionResult: 
+	return DecisionResult.create(frontal.is_colliding())
 
 func _to_idle() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
