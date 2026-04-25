@@ -1,15 +1,13 @@
 [gd_scene format=3 uid="uid://b0yxehbs1xbm6"]
 
-[ext_resource type="PackedScene" uid="uid://cvrcq1mk67fwl" path="res://entities/blocks/bomb/bomb_mesh.tscn" id="1_n2yov"]
+[ext_resource type="PackedScene" uid="uid://by2hdo81q65q3" path="res://entities/world/bomb/bomb.glb" id="1_7vb8k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_am81k"]
-radius = 0.96999997
 
 [node name="Bomb" type="RigidBody3D" unique_id=1519710370]
 mass = 1.6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=61974523]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("SphereShape3D_am81k")
 
-[node name="Bomb" parent="." unique_id=1611999295 instance=ExtResource("1_n2yov")]
+[node name="MeshInstance3D" parent="." unique_id=291303015 instance=ExtResource("1_7vb8k")]

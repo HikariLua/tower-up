@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cqfnd5d204bcu" path="res://temp/test_controller.gd" id="4_344fq"]
 [ext_resource type="Script" uid="uid://dfoxxrbfyfg28" path="res://systems/camera/states/fixed_y_rotration_camera_state.gd" id="5_j6qeq"]
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
-[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb/bomb.tscn" id="7_hl0m3"]
+[ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/world/bomb/bomb.tscn" id="7_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://roftoolsqquc" path="res://entities/world/explosive_box/explosive_box.tscn" id="7_rxgam"]
 [ext_resource type="PackedScene" uid="uid://dj4hm5ospaopn" path="res://entities/collectables/garnet/garnet.tscn" id="8_2yfgd"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]

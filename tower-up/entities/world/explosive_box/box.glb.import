@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bodvn5oeawdox"
-path="res://.godot/imported/Bomb.glb-388521dc12d3cd809991043f4e0d42ad.scn"
+uid="uid://bxdpmmy3788x6"
+path="res://.godot/imported/box.glb-85e1d0d0c03d749d97d17176f9ccd0b8.scn"
 
 [deps]
 
-source_file="res://entities/blocks/bomb/Bomb.glb"
-dest_files=["res://.godot/imported/Bomb.glb-388521dc12d3cd809991043f4e0d42ad.scn"]
+source_file="res://entities/world/explosive_box/box.glb"
+dest_files=["res://.godot/imported/box.glb-85e1d0d0c03d749d97d17176f9ccd0b8.scn"]
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="MeshInstance3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

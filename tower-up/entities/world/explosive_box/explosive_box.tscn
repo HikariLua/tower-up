@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://roftoolsqquc"]
 
-[ext_resource type="PackedScene" uid="uid://bxdpmmy3788x6" path="res://temp/models/box.glb" id="1_uvwu5"]
+[ext_resource type="PackedScene" uid="uid://bxdpmmy3788x6" path="res://entities/world/explosive_box/box.glb" id="1_uvwu5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rjso4"]
 size = Vector3(0.8, 0.8, 0.8)
