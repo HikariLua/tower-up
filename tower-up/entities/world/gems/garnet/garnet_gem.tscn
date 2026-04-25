@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bcgpa5s40uu47"]
+
+[ext_resource type="PackedScene" uid="uid://bjriq4hy6r2u0" path="res://temp/models/garnet.glb" id="1_4pl3n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6j0s"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="GarnetGem" type="AnimatableBody3D" unique_id=901399057]
+
+[node name="GarnetMeshInstance" parent="." unique_id=1666836658 instance=ExtResource("1_4pl3n")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=176068836]
+shape = SubResource("BoxShape3D_u6j0s")
