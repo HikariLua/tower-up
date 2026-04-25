@@ -22,5 +22,3 @@ shape = SubResource("SphereShape3D_u0akx")
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=1853370617]
 stream = ExtResource("2_od1xl")
-
-[connection signal="finished" from="CoinSound" to="." method="_on_sound_finished"]
