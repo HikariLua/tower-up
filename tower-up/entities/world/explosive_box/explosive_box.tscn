@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://roftoolsqquc"]
+
+[ext_resource type="PackedScene" uid="uid://bxdpmmy3788x6" path="res://temp/models/box.glb" id="1_uvwu5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjso4"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="ExplosiveBox" type="RigidBody3D" unique_id=1647930551]
+
+[node name="MeshInstance3DBox" parent="." unique_id=1460743542 instance=ExtResource("1_uvwu5")]
+
+[node name="CollisionShape3DCube" type="CollisionShape3D" parent="." unique_id=27350795]
+shape = SubResource("BoxShape3D_rjso4")
