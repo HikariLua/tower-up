@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cxlunqdtbbv1t"]
+
+[ext_resource type="PackedScene" uid="uid://b3vvtc3yomur" path="res://temp/models/quartz.glb" id="1_mcgq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dchbk"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="QuartzGem" type="AnimatableBody3D" unique_id=127317198]
+
+[node name="QuartzMeshInstance" parent="." unique_id=1669507194 instance=ExtResource("1_mcgq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=810125989]
+shape = SubResource("BoxShape3D_dchbk")
