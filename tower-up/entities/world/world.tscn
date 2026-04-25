@@ -78,7 +78,7 @@ script = ExtResource("1_jgvb4")
 environment = SubResource("Environment_5n7jr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=223826005]
-transform = Transform3D(0.72092617, -0.49909043, 0.48080578, 0, 0.69379157, 0.72017586, -0.6930119, -0.51919365, 0.5001725, 0, 0, 0)
+transform = Transform3D(0.7209261, -0.4990905, 0.48080578, 2.0653363e-08, 0.69379157, 0.72017586, -0.6930119, -0.51919365, 0.5001725, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=866541521 instance=ExtResource("2_ni022")]
@@ -206,59 +206,51 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0
 [node name="Bricks18" parent="." unique_id=199098619 instance=ExtResource("8_ftcbs")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 0.8000002, -1.8333294)
 
-[node name="Bricks37" parent="." unique_id=566865959 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, 0.16667074)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=566640392]
+transform = Transform3D(0.72092617, -0.4990905, 0.4808058, 2.0653365e-08, 0.69379157, 0.72017586, -0.69301194, -0.51919365, 0.5001725, 0, 1.9, 0)
+shadow_enabled = true
 
-[node name="Bricks38" parent="." unique_id=155235416 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, 0.16667074)
+[node name="Bricks37" parent="." unique_id=1210585339 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.7000003, 0.16667074)
 
-[node name="Bricks39" parent="." unique_id=1003855725 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, 0.16667062)
+[node name="Bricks38" parent="." unique_id=533280349 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, 0.16667074)
 
-[node name="Bricks40" parent="." unique_id=9858952 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, -1.8333292)
+[node name="Bricks39" parent="." unique_id=2028823351 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.7000003, 0.16667062)
 
-[node name="Bricks41" parent="." unique_id=942942948 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, -1.8333293)
+[node name="Bricks40" parent="." unique_id=2039019351 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, -1.8333293)
 
-[node name="Bricks42" parent="." unique_id=301275594 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, -1.8333294)
+[node name="Bricks41" parent="." unique_id=675842135 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.7000003, -1.8333294)
 
-[node name="Bricks43" parent="." unique_id=299248626 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, 0.16667074)
+[node name="Bricks42" parent="." unique_id=1957833431 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.7000003, 0.16667074)
 
-[node name="Bricks44" parent="." unique_id=1978689840 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, 0.16667074)
+[node name="Bricks43" parent="." unique_id=1261418854 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, 0.16667074)
 
-[node name="Bricks45" parent="." unique_id=1200625467 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, 0.16667062)
+[node name="Bricks44" parent="." unique_id=794707615 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, -1.8333293)
 
-[node name="Bricks46" parent="." unique_id=326166724 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, -1.8333292)
+[node name="Bricks45" parent="." unique_id=1582450770 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.7000003, -1.8333294)
 
-[node name="Bricks47" parent="." unique_id=1317862776 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, -1.8333293)
+[node name="Bricks46" parent="." unique_id=387625512 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, -1.8333293)
 
-[node name="Bricks48" parent="." unique_id=392022415 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, -1.8333294)
+[node name="Bricks47" parent="." unique_id=14201106 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.7000003, 0.16667074)
 
-[node name="Bricks49" parent="." unique_id=2035925615 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, -1.8333293)
+[node name="Bricks48" parent="." unique_id=1880496837 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.7000003, 0.16667074)
 
-[node name="Bricks50" parent="." unique_id=141975166 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, 0.16667074)
+[node name="Bricks49" parent="." unique_id=1781985096 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.7000003, -1.8333292)
 
-[node name="Bricks51" parent="." unique_id=1599792603 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.93333673, 2.8000002, 0.16667074)
-
-[node name="Bricks52" parent="." unique_id=987039061 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, 0.16667062)
-
-[node name="Bricks53" parent="." unique_id=680935621 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.0666633, 2.8000002, -1.8333292)
-
-[node name="Bricks54" parent="." unique_id=606389916 instance=ExtResource("8_ftcbs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.8000002, -1.8333294)
+[node name="Bricks50" parent="." unique_id=135195270 instance=ExtResource("8_ftcbs")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9333365, 2.7000003, -1.8333294)
 
 [node name="Bricks19" parent="." unique_id=963469722 instance=ExtResource("8_ftcbs")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12.933336, 0.8000002, 0.16667014)

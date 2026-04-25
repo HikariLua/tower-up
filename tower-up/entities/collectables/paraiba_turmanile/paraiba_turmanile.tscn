@@ -2,17 +2,22 @@
 
 [ext_resource type="Script" uid="uid://bl5rqu7hi63lu" path="res://entities/collectables/socre_collectable.gd" id="1_2y7e8"]
 [ext_resource type="PackedScene" uid="uid://v6ki8851gii6" path="res://temp/models/turmaline.glb" id="2_phvx8"]
+[ext_resource type="AudioStream" uid="uid://bguuf32k76dma" path="res://entities/coin-sound.mp3" id="3_jaasl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hbo5b"]
 
-[node name="ParaibaTurmanile" type="Area3D" unique_id=1693566820]
+[node name="ParaibaTurmanile" type="Area3D" unique_id=1693566820 node_paths=PackedStringArray("sound_effect")]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_2y7e8")
 score_value = 10000
+sound_effect = NodePath("CoinSound")
 
 [node name="MeshInstance3D" parent="." unique_id=1187135115 instance=ExtResource("2_phvx8")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1848767696]
 shape = SubResource("BoxShape3D_hbo5b")
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=618871781]
+stream = ExtResource("3_jaasl")
