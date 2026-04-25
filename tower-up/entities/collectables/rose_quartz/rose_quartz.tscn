@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bsekhlm0bjh5r"]
 
 [ext_resource type="Script" uid="uid://bl5rqu7hi63lu" path="res://entities/collectables/socre_collectable.gd" id="1_hjtvw"]
+[ext_resource type="PackedScene" uid="uid://b3vvtc3yomur" path="res://temp/models/quartz.glb" id="2_u0akx"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_u7fnx"]
 
@@ -21,7 +22,10 @@ monitorable = false
 script = ExtResource("1_hjtvw")
 score_value = 100
 
+[node name="quartzMeshInstace3D" parent="." unique_id=830344027 instance=ExtResource("2_u0akx")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1909887244]
+visible = false
 mesh = SubResource("SphereMesh_u7fnx")
 surface_material_override/0 = SubResource("StandardMaterial3D_hjtvw")
 

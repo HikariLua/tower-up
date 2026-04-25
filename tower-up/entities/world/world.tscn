@@ -8,7 +8,10 @@
 [ext_resource type="Script" uid="uid://bx0qvhe41p2bl" path="res://systems/camera/states/following_player_camera_state.gd" id="6_db8ab"]
 [ext_resource type="PackedScene" uid="uid://b0yxehbs1xbm6" path="res://entities/blocks/bomb/bomb.tscn" id="7_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://roftoolsqquc" path="res://entities/world/explosive_box/explosive_box.tscn" id="7_rxgam"]
+[ext_resource type="PackedScene" uid="uid://dj4hm5ospaopn" path="res://entities/collectables/garnet/garnet.tscn" id="8_2yfgd"]
 [ext_resource type="PackedScene" uid="uid://bj72r2fryccad" path="res://entities/blocks/bricks/bricks.tscn" id="8_ftcbs"]
+[ext_resource type="PackedScene" uid="uid://5ursmmw781k0" path="res://entities/collectables/paraiba_turmanile/paraiba_turmanile.tscn" id="9_r34v2"]
+[ext_resource type="PackedScene" uid="uid://bsekhlm0bjh5r" path="res://entities/collectables/rose_quartz/rose_quartz.tscn" id="10_8ih0k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmxsu"]
 
@@ -115,6 +118,15 @@ mesh = SubResource("BoxMesh_pmxsu")
 
 [node name="ExplosiveBox" parent="Ground" unique_id=1647930551 instance=ExtResource("7_rxgam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4630513, 0.4000019, -1.9010048)
+
+[node name="Garnet" parent="Ground" unique_id=1693566820 instance=ExtResource("8_2yfgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, -1)
+
+[node name="ParaibaTurmanile" parent="Ground" unique_id=761982025 instance=ExtResource("9_r34v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -1)
+
+[node name="RoseQuartz" parent="Ground" unique_id=1499620502 instance=ExtResource("10_8ih0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1192705443]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 21.7, 28)

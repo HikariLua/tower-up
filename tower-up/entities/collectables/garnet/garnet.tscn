@@ -1,15 +1,7 @@
 [gd_scene format=3 uid="uid://dj4hm5ospaopn"]
 
 [ext_resource type="Script" uid="uid://bl5rqu7hi63lu" path="res://entities/collectables/socre_collectable.gd" id="1_tnfti"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_548vc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux2hg"]
-transparency = 1
-albedo_color = Color(0.99, 0.20789999, 0.22093481, 0.73333335)
-emission_enabled = true
-emission = Color(0.9882353, 0.20784314, 0.21960784, 1)
-emission_energy_multiplier = 1.55
+[ext_resource type="PackedScene" uid="uid://bjriq4hy6r2u0" path="res://temp/models/garnet.glb" id="2_548vc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fi3jv"]
 
@@ -20,9 +12,7 @@ monitorable = false
 script = ExtResource("1_tnfti")
 score_value = 500
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1909887244]
-mesh = SubResource("PrismMesh_548vc")
-surface_material_override/0 = SubResource("StandardMaterial3D_ux2hg")
+[node name="MeshInstance3D" parent="." unique_id=275714582 instance=ExtResource("2_548vc")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1848767696]
 shape = SubResource("BoxShape3D_fi3jv")
