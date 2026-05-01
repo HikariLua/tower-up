@@ -156,13 +156,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 6.8, 2.2)
 transform = Transform3D(0.72092617, -0.4990905, 0.4808058, 2.0653365e-08, 0.69379157, 0.72017586, -0.69301194, -0.51919365, 0.5001725, 0, 1.9, 0)
 shadow_enabled = true
 
-[node name="System" type="Node3D" parent="." unique_id=978681798]
+[node name="Tutorial" type="Node3D" parent="." unique_id=978681798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -10)
 
-[node name="Label3D" type="Label3D" parent="System" unique_id=157440762]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+[node name="Label3D" type="Label3D" parent="Tutorial" unique_id=157440762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.8, 0)
 pixel_size = 0.01
 text = "Space para pular"
+
+[node name="Label3D2" type="Label3D" parent="Tutorial" unique_id=84896384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2000003, 7.800001, 0)
+pixel_size = 0.01
+text = "WASD para se mover"
+
+[node name="Label3D3" type="Label3D" parent="Tutorial" unique_id=773646406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.400001, 7.800002, 0)
+pixel_size = 0.01
+text = "Ctrl para agachar"
+
+[node name="Label3D4" type="Label3D" parent="Tutorial" unique_id=2123191486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.799796e-07, 5.300004, 0)
+pixel_size = 0.01
+text = "Ctrl + Space (parado)
+Backflip"
+
+[node name="Label3D5" type="Label3D" parent="Tutorial" unique_id=1111885165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.199999, 5.3000083, 0)
+pixel_size = 0.01
+text = "Ctrl + Space 
+enquanto se move
+ZJump"
+
+[node name="Label3D6" type="Label3D" parent="Tutorial" unique_id=2140443283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9999976, 5.3000164, 0)
+pixel_size = 0.01
+text = "Shift (segurando Ctrl)
+rolar"
+
+[node name="Label3D7" type="Label3D" parent="Tutorial" unique_id=1077628206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.199995, 9.500032, 0)
+pixel_size = 0.01
+text = "Shift 
+Correr"
 
 [node name="BricksStaticBody3D" parent="." unique_id=1630384504 instance=ExtResource("8_ftcbs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90000004, 0.8, -0.5)
