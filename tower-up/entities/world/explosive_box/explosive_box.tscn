@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bxdpmmy3788x6" path="res://entities/world/explosive_box/box.glb" id="1_uvwu5"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uvwu5"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_rjso4"]
-size = Vector3(0.8, 0.8, 0.8)
 
 [node name="ExplosiveBox" type="RigidBody3D" unique_id=1647930551]
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_uvwu5")
 
 [node name="MeshInstance3DBox" parent="." unique_id=1460743542 instance=ExtResource("1_uvwu5")]
 

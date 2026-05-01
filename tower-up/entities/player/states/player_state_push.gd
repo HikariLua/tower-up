@@ -10,8 +10,7 @@ extends State
 
 @export_group(ExportGroups.STATES)
 @export var idle_state: PlayerStateIdle
-@export var sprint_state: PlayerStateSprint
-@export var crouch_slide_state: PlayerStateCrouchSlide
+@export var run_state: PlayerStateRun
 @export var jump_state: PlayerStateJump
 @export var fall_state: PlayerStateFall
 
@@ -22,6 +21,8 @@ extends State
 @export var superior: RayCast3D
 @export var frontal: RayCast3D
 
+@export var push_force: int = 500
+
 
 var motion: MotionData
 
@@ -30,11 +31,14 @@ func _ready() -> void:
 	assert(idle_state != null)
 	local_function_transitions.create_and_add(idle_state, _to_idle)
 
-	assert(sprint_state != null)
-	local_function_transitions.create_and_add(sprint_state, _to_sprint)
+	#assert(sprint_state != null)
+	#local_function_transitions.create_and_add(sprint_state, _to_sprint)
 
-	assert(crouch_slide_state != null)
-	local_function_transitions.create_and_add(crouch_slide_state, _to_crouch_slide)
+	#assert(crouch_slide_state != null)
+	#local_function_transitions.create_and_add(crouch_slide_state, _to_crouch_slide)
+
+	assert(run_state != null)
+	local_function_transitions.create_and_add(run_state, _to_run)
 
 	assert(jump_state != null )
 	local_function_transitions.create_and_add(jump_state, _to_jump)
@@ -53,8 +57,9 @@ func _ready() -> void:
 
 
 func _on_enter() -> void:
-	animation_player.play("running")
-
+	#TODO: Criar animação de "pushing"
+	#animation_player.play("pushing") 
+	pass
 
 func _state_physics_process(delta: float) -> void:
 	assert(character_body != null)
@@ -83,31 +88,22 @@ func _state_physics_process(delta: float) -> void:
 		motion.fall_speed
 	)
 
-	character_body.move_and_slide()
-	# MotionComponent.character_push_rigidbody(
-	# 	character_body,
-	# 	delta,
-	# 	motion.push_force
-	# )
+	if(frontal.get_collider() is RigidBody3D):
+		var collider: RigidBody3D = frontal.get_collider()
+		
+		collider.apply_force(direction * push_force, frontal.get_collision_normal())
 
-func _to_pushing() -> DecisionResult: 
-	return DecisionResult.create(frontal.is_colliding())
+	character_body.move_and_slide()
+
+
 
 func _to_idle() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
 	return DecisionResult.create(input_direction == Vector3.ZERO)
 
-
-func _to_sprint() -> DecisionResult:
-	assert(InputMap.has_action(InputActions.SPRINT))
-	var sprint_input: bool = Input.is_action_pressed(InputActions.SPRINT)
-	return DecisionResult.create(sprint_input)
-	
-
-func _to_crouch_slide() -> DecisionResult:
-	assert(InputMap.has_action(InputActions.CROUCH))
-	var crouch_input: bool = Input.is_action_pressed(InputActions.CROUCH)
-	return DecisionResult.create(crouch_input)
+func _to_run() -> DecisionResult:
+	var stop_colliding: bool = !frontal.is_colliding()
+	return DecisionResult.create(stop_colliding)
 
 
 func _to_jump() -> DecisionResult:

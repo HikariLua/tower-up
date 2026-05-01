@@ -14,6 +14,7 @@ extends State
 @export var crouch_slide_state: PlayerStateCrouchSlide
 @export var jump_state: PlayerStateJump
 @export var fall_state: PlayerStateFall
+@export var push_state: PlayerStatePush
 
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
@@ -32,6 +33,9 @@ func _ready() -> void:
 
 	assert(sprint_state != null)
 	local_function_transitions.create_and_add(sprint_state, _to_sprint)
+	
+	assert(push_state != null)
+	local_function_transitions.create_and_add(push_state, _to_push)
 
 	assert(crouch_slide_state != null)
 	local_function_transitions.create_and_add(crouch_slide_state, _to_crouch_slide)
@@ -84,19 +88,18 @@ func _state_physics_process(delta: float) -> void:
 	)
 
 	character_body.move_and_slide()
-	# MotionComponent.character_push_rigidbody(
-	# 	character_body,
-	# 	delta,
-	# 	motion.push_force
-	# )
 
-func _to_pushing() -> DecisionResult: 
-	return DecisionResult.create(frontal.is_colliding())
 
 func _to_idle() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()
 	return DecisionResult.create(input_direction == Vector3.ZERO)
 
+func _to_push() -> DecisionResult:
+	var colliding: bool = frontal.is_colliding()
+	if colliding:
+		var object: CollisionObject3D = frontal.get_collider()
+		print("Raycast batendo em: ", object.name) 
+	return DecisionResult.create(colliding)
 
 func _to_sprint() -> DecisionResult:
 	assert(InputMap.has_action(InputActions.SPRINT))

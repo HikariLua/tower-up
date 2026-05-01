@@ -99,7 +99,7 @@ shadow_mesh = SubResource("ArrayMesh_cy5s7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_c04s3"]
 size = Vector3(2, 1.8, 2)
 
-[node name="Bricks" type="Node3D" unique_id=38351881]
+[node name="BricksStaticBody3D" type="StaticBody3D" unique_id=1630384504]
 
 [node name="Cube_001" type="MeshInstance3D" parent="." unique_id=943672992]
 mesh = SubResource("ArrayMesh_86kro")
@@ -112,8 +112,6 @@ mesh = SubResource("ArrayMesh_oyuuo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 mesh = SubResource("ArrayMesh_p5fcw")
 
-[node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=159273314]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1220358875]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1220358875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_c04s3")
