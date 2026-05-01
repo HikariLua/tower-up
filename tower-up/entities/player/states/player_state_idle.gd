@@ -20,8 +20,11 @@ const IDLE_ANIMATION: StringName = "RESET"
 @export_group(ExportGroups.ANIMATION)
 @export var animation_player: AnimationPlayer
 
-var motion: MotionData
+@export_group(ExportGroups.RAYCASTS)
+@export var superior: RayCast3D
+@export var frontal: RayCast3D
 
+var motion: MotionData
 
 func _ready() -> void:
 	assert(run_state != null)
@@ -70,6 +73,13 @@ func _state_physics_process(delta: float) -> void:
 
 	character_body.move_and_slide()
 
+
+func _to_push() -> DecisionResult:
+	var colliding: bool = frontal.is_colliding()
+	if colliding:
+		var object: CollisionObject3D = frontal.get_collider()
+		print("Raycast batendo em: ", object.name) 
+	return DecisionResult.create(colliding)
 
 func _to_run() -> DecisionResult:
 	var input_direction: Vector3 = InputComponent.get_motion_input_direction()

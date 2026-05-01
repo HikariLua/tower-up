@@ -324,18 +324,7 @@ superior = NodePath("../../SuperiorRayCast3D")
 frontal = NodePath("../../FrontalRayCast3D")
 can_be_transitioned_to = null
 
-[node name="Sprint" type="Node" parent="StateMachine" unique_id=1032085623 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "crouch_slide_state", "jump_state", "fall_state", "animation_player")]
-script = ExtResource("8_26q78")
-character_body = NodePath("../..")
-motion_component = NodePath("../../Components/MotionComponent")
-idle_state = NodePath("../Idle")
-run_state = NodePath("../Run")
-crouch_slide_state = NodePath("../CrouchSlide")
-jump_state = NodePath("../Jump")
-fall_state = NodePath("../Fall")
-animation_player = NodePath("../../AnimationPlayer")
-
-[node name="Push" type="Node" parent="StateMachine" unique_id=1825190289 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "jump_state", "fall_state", "animation_player", "superior", "frontal")]
+[node name="Push" type="Node" parent="StateMachine" unique_id=241055192 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "jump_state", "fall_state", "animation_player", "superior", "frontal")]
 script = ExtResource("13_afbqv")
 character_body = NodePath("../..")
 motion_component = NodePath("../../Components/MotionComponent")
@@ -346,6 +335,18 @@ fall_state = NodePath("../Fall")
 animation_player = NodePath("../../AnimationPlayer")
 superior = NodePath("../../SuperiorRayCast3D")
 frontal = NodePath("../../FrontalRayCast3D")
+metadata/_custom_type_script = "uid://bbt8nsf8784so"
+
+[node name="Sprint" type="Node" parent="StateMachine" unique_id=1032085623 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "run_state", "crouch_slide_state", "jump_state", "fall_state", "animation_player")]
+script = ExtResource("8_26q78")
+character_body = NodePath("../..")
+motion_component = NodePath("../../Components/MotionComponent")
+idle_state = NodePath("../Idle")
+run_state = NodePath("../Run")
+crouch_slide_state = NodePath("../CrouchSlide")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=1359702380 node_paths=PackedStringArray("character_body", "motion_component", "idle_state", "fall_state", "animation_player")]
 script = ExtResource("6_8fjmc")
@@ -415,6 +416,9 @@ animation_player = NodePath("../../AnimationPlayer")
 
 [node name="RollTimer" type="Timer" parent="StateMachine/Roll" unique_id=1847591333]
 one_shot = true
+
+[node name="Node" type="Node" parent="StateMachine" unique_id=1825190289]
+script = ExtResource("13_afbqv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=382416899]
 libraries/ = SubResource("AnimationLibrary_bectd")
